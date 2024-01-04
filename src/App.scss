@@ -4,11 +4,12 @@
   box-sizing: border-box;
 }
 
-
+$bgColor: #F2CDA1;
+$myFontFamily: 'Roboto', sans-serif;
 
 body {
-  background-color: #FBF3EB;
-  font-family: 'Roboto', sans-serif;
+  background-color: $bgColor;
+  font-family: $myFontFamily;
 }
 
 #root {
