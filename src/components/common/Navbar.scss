@@ -1,17 +1,18 @@
+$textColor: #111;
 
 .navbar{
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 2rem;
-  border-bottom: 1px solid #111;
+  border-bottom: 1px solid $textColor;
   margin: 0 2rem;
 }
 
 .navbar-link {
   text-decoration: none;
   font-size: 1.5rem;
-  color: #111;
+  color: $textColor;
   padding: 1rem 2rem;
   background-color: #4a7e73;
   border-radius: .3rem;

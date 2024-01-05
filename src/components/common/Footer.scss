@@ -1,0 +1,22 @@
+$textColor: #111;
+
+.footer-nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  border-top: 1px solid #111;
+  margin: 0 .2rem;
+  margin-top: 1rem;
+  
+  .footer-links{
+    text-decoration: none;
+    color: $textColor;
+    transition: all .4s ease;
+  }
+}
+
+.footer-links:hover{
+  font-weight: 700;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
