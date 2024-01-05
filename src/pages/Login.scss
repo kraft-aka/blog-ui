@@ -1,0 +1,56 @@
+$loginBgColor: #9debda;
+$btnBgColor: #111;
+$btnFontColor: #fff;
+
+.login-container {
+  margin: 0 auto;
+  max-width: 42.5rem;
+  background-color: $loginBgColor;
+  display: flex;
+  flex-direction: column;
+  margin: 10rem auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  .login-title{
+    text-align: center;
+    font-size: 2rem;
+    margin: 1rem 0;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 5rem;
+
+    .login-label {
+      margin: .5rem 0;
+      font-weight: 700;
+    }
+    .login-input{
+      padding: .5rem;
+      outline: none;
+      border: none;
+      border-radius: .3rem;
+    }
+    .login-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .login-btn {
+        padding: 1rem 2.5rem;
+        margin: 1rem 0;
+        background-color: $btnBgColor;
+        color: $btnFontColor;
+        font-size: 1rem;
+        border: none;
+        border-radius: 2.5rem;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.login-btn:hover{
+  cursor: pointer;
+}
