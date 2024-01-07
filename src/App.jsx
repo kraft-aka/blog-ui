@@ -6,6 +6,7 @@ import Terms from "./pages/Terms";
 import Write from "./pages/Write";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 import Post from "./pages/Post";
 import Navbar from "./components/common/Navbar";
 import Footer from "./components/common/Footer";
@@ -22,6 +23,7 @@ function App() {
         <Route path="/write" element={<Write />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/signin" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/post/:id" element={<Post />} />
         <Route path="/" element={<Home />} />
       </Routes>
