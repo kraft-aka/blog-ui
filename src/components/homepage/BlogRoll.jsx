@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import BlogCard from "./BlogCard";
+import "./BlogRoll.scss";
 
 const arrayBlogs = [
   {
@@ -73,10 +74,10 @@ export default function BlogRoll() {
   const [blogs, setBlogs] = useState(arrayBlogs);
 
   return (
-    <div>
-      <header className="blog-header">
-        <h2>Latest Posts</h2>
-        <p>{arrayBlogs.length} Blogs</p>
+    <div className="blog-roll-container">
+      <header className="blog-roll-header">
+        <h2 className="blog-roll-title">Latest Posts</h2>
+        <p className="blog-roll-length">{arrayBlogs.length} Blogs</p>
       </header>
       {blogs.map((blog) => (
         <BlogCard blog={blog} key={blog._id} />

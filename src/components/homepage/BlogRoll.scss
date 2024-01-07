@@ -1,0 +1,19 @@
+
+
+.blog-roll-container {
+  display: flex;
+  flex-direction: column;
+
+  .blog-roll-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin:0 5rem;
+    margin-top: 1rem;
+  }
+  .blog-roll-length {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+}
