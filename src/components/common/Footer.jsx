@@ -1,25 +1,58 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Footer.scss";
 
 export default function Footer() {
   return (
     <footer className="footer-nav">
-      <Link to="/about" className="footer-links">
+    <NavLink
+    to="/"
+    className={({ isActive }) =>
+      isActive ? "footer-active-link" : "footer-links"
+    }
+  >
+    Home
+  </NavLink>
+      <NavLink
+        to="/about"
+        className={({ isActive }) =>
+          isActive ? "footer-active-link" : "footer-links"
+        }
+      >
         About
-      </Link>
-      <Link to="/privacy" className="footer-links">
+      </NavLink>
+      <NavLink
+        to="/privacy"
+        className={({ isActive }) =>
+          isActive ? "footer-active-link" : "footer-links"
+        }
+      >
         Privacy
-      </Link>
-      <Link to="/terms" className="footer-links">
+      </NavLink>
+      <NavLink
+        to="/terms"
+        className={({ isActive }) =>
+          isActive ? "footer-active-link" : "footer-links"
+        }
+      >
         Terms
-      </Link>
-      <Link to="/write" className="footer-links">
+      </NavLink>
+      <NavLink
+        to="/write"
+        className={({ isActive }) =>
+          isActive ? "footer-active-link" : "footer-links"
+        }
+      >
         Write
-      </Link>
-      <Link to="/contact" className="footer-links">
+      </NavLink>
+      <NavLink
+        to="/contact"
+        className={({ isActive }) =>
+          isActive ? "footer-active-link" : "footer-links"
+        }
+      >
         Contact
-      </Link>
+      </NavLink>
     </footer>
   );
 }
