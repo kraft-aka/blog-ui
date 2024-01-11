@@ -1,5 +1,4 @@
-$bgColorCard: #FFFDFD;
-
+$bgColorCard: #fffdfd;
 
 .blog-card {
   width: 42.5rem;
@@ -10,7 +9,7 @@ $bgColorCard: #FFFDFD;
   align-items: stretch;
   margin: 0 auto;
   margin-top: 1.5rem;
-  transition: all .8s ease;
+  transition: all 0.8s ease;
   animation-name: slideIn;
   animation-duration: 1s;
 
@@ -51,10 +50,15 @@ $bgColorCard: #FFFDFD;
     }
   }
 
-  .blog-card-title {}
+  .blog-card-title {
+  }
 
   .blog-card-description {
     margin-top: 1.5rem;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 }
 

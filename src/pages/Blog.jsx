@@ -5,17 +5,17 @@ import comment from "../assets/comment.svg";
 import arrowLeft from "../assets/arrow-left.svg";
 import "./Blog.scss";
 
-export default function Blog() {
-  const { id } = useParams();
+export default function Blog({ userName, title }) {
+  const { _id } = useParams();
   return (
     <main className="blog-container">
       <section className="blog-container-top">
         <header className="blog-header">
           <h1 className="blog-title">
-            In a laoreet purus. Integer turpis quam, laoreet id orci nec, ul
+            {title}
           </h1>
           <img src="" alt="user-icon" className="blog-user-icon" />
-          <span>{}By John Doe</span>
+          <span>{userName}By John Doe</span>
           <p className="blog-date">11/12/2023</p>
           <div className="blog-like-comment-container">
             <p className="blog-like-comment">2</p>
@@ -27,7 +27,7 @@ export default function Blog() {
         </header>
         <figure className="blog-figure">
           <img src="" alt="main image" className="blog-img" />
-          <figcaption>Photograph: {}</figcaption>
+          <figcaption>Photograph: { }</figcaption>
         </figure>
       </section>
       <section className="blog-content">
@@ -63,7 +63,7 @@ export default function Blog() {
           </div>
         </div>
       </section>
-      {id}
+      {_id}
     </main>
   );
 }
