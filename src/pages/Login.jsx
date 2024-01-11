@@ -30,7 +30,7 @@ export default function Login() {
             Login
           </button>
           <p>or</p>
-          <Link to="signup" className="login-btn">
+          <Link to="/signup" className="login-btn">
             Sign Up
           </Link>
         </div>
