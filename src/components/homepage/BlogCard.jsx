@@ -18,11 +18,11 @@ export default function BlogCard({ blog }) {
 
   return (
     <div className="blog-card">
-      <img src="" alt="image for blog" className="blog-card-img" />
+      <img src="https://images.unsplash.com/photo-1682685797741-f0213d24418c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D" alt="image for blog" className="blog-card-img" />
       <div className="blog-card-container">
         <Link to={`/blog/${_id}`}>
           <header className="blog-card-header">
-            <img src="" alt="user icon" className="blog-card-user-icon" />
+            <img src="https://images.unsplash.com/photo-1705848533403-6a5427e6f466?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHx8" alt="user icon" className="blog-card-user-icon" />
             <p className="blog-card-username">{userName}</p>
             <p className="blog-card-date">{formatDate(createdAt)}</p>
           </header>

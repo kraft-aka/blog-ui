@@ -14,7 +14,7 @@ export default function Blog({ userName, title }) {
           <h1 className="blog-title">
             {title}
           </h1>
-          <img src="" alt="user-icon" className="blog-user-icon" />
+          <img src="https://images.unsplash.com/photo-1682685797741-f0213d24418c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D" alt="user-icon" className="blog-user-icon" />
           <span>{userName}By John Doe</span>
           <p className="blog-date">11/12/2023</p>
           <div className="blog-like-comment-container">
@@ -26,7 +26,7 @@ export default function Blog({ userName, title }) {
           </div>
         </header>
         <figure className="blog-figure">
-          <img src="" alt="main image" className="blog-img" />
+          <img src="https://images.unsplash.com/photo-1682685797741-f0213d24418c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D" alt="main image" className="blog-img" />
           <figcaption>Photograph: { }</figcaption>
         </figure>
       </section>
