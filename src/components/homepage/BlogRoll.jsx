@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BlogCard from "./BlogCard";
 import "./BlogRoll.scss";
+import { getAllBlogs } from "../../API/blogs";
 
 const arrayBlogs = [
   {
@@ -72,6 +73,10 @@ const arrayBlogs = [
 
 export default function BlogRoll() {
   const [blogs, setBlogs] = useState(arrayBlogs);
+
+  useEffect(() => {
+    getAllBlogs().then((fetchedBlogs)=> setBlogs(fetchedBlogs))
+  }, []);
 
   return (
     <div className="blog-roll-container">
