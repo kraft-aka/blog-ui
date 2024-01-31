@@ -2,21 +2,23 @@ import React from "react";
 import "./BlogCard.scss";
 import { Link } from "react-router-dom";
 import { basePath } from "../../API/axiosInstance";
+import formatDate from "../../utils/formatDate";
 
 export default function BlogCard({ blog }) {
-  const { title, _id, userName, createdAt, blogContent, blogImage, createdBy:{userIcon} } = blog;
+  const {
+    title,
+    _id,
+    userName,
+    createdAt,
+    blogContent,
+    blogImage,
+    createdBy: { userIcon },
+  } = blog;
 
-  // reformats the date to conventional one
-  const formatDate = (date) => {
-    const inputDate = new Date(date);
-    return `${
-      inputDate.getMonth() + 1
-    }/${inputDate.getDate()}/${inputDate.getFullYear()}`;
-  };
-
-  let imgSrc = "https://images.unsplash.com/photo-1705848533403-6a5427e6f466?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHx8";
-  let iconSrc = "https://images.unsplash.com/photo-1705848533403-6a5427e6f466?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHx8";
-
+  let imgSrc =
+    "https://images.unsplash.com/photo-1705848533403-6a5427e6f466?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHx8";
+  let iconSrc =
+    "https://images.unsplash.com/photo-1705848533403-6a5427e6f466?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHx8";
 
   if (blogImage) {
     imgSrc = `${basePath}${blogImage.slice(1)}`;
@@ -35,7 +37,11 @@ export default function BlogCard({ blog }) {
       <div className="blog-card-container">
         <Link to={`/blog/${_id}`}>
           <header className="blog-card-header">
-            <img src={ iconSrc } alt="user icon" className="blog-card-user-icon" />
+            <img
+              src={iconSrc}
+              alt="user icon"
+              className="blog-card-user-icon"
+            />
             <p className="blog-card-username">{userName}</p>
             <p className="blog-card-date">{formatDate(createdAt)}</p>
           </header>
