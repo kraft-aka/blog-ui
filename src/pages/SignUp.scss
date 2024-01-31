@@ -11,7 +11,7 @@ $btnFontColor: #fff;
   margin: 10rem auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-  .signup-title{
+  .signup-title {
     text-align: center;
     font-size: 2rem;
     margin: 1rem 0;
@@ -23,14 +23,14 @@ $btnFontColor: #fff;
     padding: 1rem 5rem;
 
     .signup-label {
-      margin: .5rem 0;
+      margin: 0.5rem 0;
       font-weight: 700;
     }
-    .signup-input{
-      padding: .5rem;
+    .signup-input {
+      padding: 0.5rem;
       outline: none;
       border: none;
-      border-radius: .3rem;
+      border-radius: 0.3rem;
     }
     .signup-cta {
       display: flex;
@@ -51,6 +51,34 @@ $btnFontColor: #fff;
   }
 }
 
-.signup-btn:hover{
+.signup-btn:hover {
   cursor: pointer;
+}
+
+@media screen and ( min-width: 360px ) and (max-width: 430px) {
+  .signup-container {
+    width: 80%;
+    margin: 20% auto;
+  }
+  .signup-title {
+    text-align: center;
+    font-size: 1.5rem !important ;
+    margin: 0.6rem 0 !important ;
+  }
+
+  .signup-form {
+    padding: 2rem !important;
+
+    .signup-label {
+      font-size: 0.8rem;
+    }
+    .signup-cta {
+      justify-content: space-around;
+
+      .signup-btn {
+        padding: 0.5rem 1rem !important ;
+        font-size: 0.8rem !important ;
+      }
+    }
+  }
 }

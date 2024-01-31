@@ -1,5 +1,6 @@
 import React from "react";
 import "./About.scss";
+import { Link } from 'react-router-dom'
 
 export default function About() {
   return (
@@ -45,7 +46,7 @@ export default function About() {
         the stories that connect us all.
       </p>
       <div className="about-nav-back">
-        <p>Back</p>
+        <Link to='/'>Back</Link>
       </div>
     </article>
   );

@@ -1,11 +1,11 @@
-.terms-container{
+.terms-container {
   margin: 2rem;
 
-  .terms-title{
+  .terms-title {
     font-size: 3rem;
     margin-bottom: 1rem;
   }
-  .terms-sub-title{
+  .terms-sub-title {
     font-size: 1.5rem;
   }
   p {
@@ -13,5 +13,28 @@
   }
   .terms-list-item {
     margin-left: 1rem;
+  }
+}
+
+@media screen and ( min-width: 360px ) and (max-width: 430px) {
+  .terms-container {
+    margin: 0 1rem;
+  }
+
+  .terms-title {
+    font-size: 1.5rem !important ;
+    text-align: center;
+  }
+  .terms-sub-title {
+    font-size: 1rem !important;
+  }
+  p {
+    font-size: 0.8rem;
+  }
+
+  .terms-list-item {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
   }
 }

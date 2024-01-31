@@ -40,48 +40,102 @@
       .blog-img {
         width: 340px;
         height: 340px;
-        background-color: #ff6347;
         object-fit: cover;
       }
     }
   }
   .blog-content p {
     margin: 0 2rem;
-
   }
 }
 
-.blog-comment-like-section{
+.blog-comment-like-section {
   width: 100%;
   margin-top: 2rem;
   display: flex;
   align-items: flex-start;
   justify-content: space-around;
   flex-direction: column;
-  .blog-sub-container{
+  .blog-sub-container {
     display: flex;
     width: inherit;
     justify-content: space-between;
     margin: 0 2rem;
     align-items: center;
 
-    .blog-sum-container-item-1{
+    .blog-sum-container-item-1 {
       display: flex;
       align-items: center;
     }
-    .blog-sum-container-item-1:nth-of-type(1n){
+    .blog-sum-container-item-1:nth-of-type(1n) {
       margin-right: 4rem;
     }
   }
-  .blog-cta{
+  .blog-cta {
     display: flex;
     justify-content: space-between;
     width: inherit;
     margin-top: 1rem;
 
-    .blog-arrow{
+    .blog-arrow {
       display: flex;
-      margin-right: 2rem;      
+      margin-right: 2rem;
     }
+  }
+}
+
+@media screen and ( min-width: 360px ) and (max-width: 430px){
+  .blog-container {
+    width: 100%;
+    margin: 0 auto;
+
+    .blog-container-top {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: flex-start;
+      margin: 0 auto;
+
+      .blog-header {
+        margin: 0 1rem;
+        .blog-title {
+          margin: 1rem 0;
+          width: 100%;
+        }
+        span {
+          margin-left: 1rem;
+        }
+        .blog-date {
+          margin: 0.25rem 0;
+        }
+        .blog-like-comment-container {
+          display: flex;
+          justify-content: flex-start;
+          flex-direction: row;
+          align-items: center;
+        }
+      }
+      .blog-figure {
+        display: flex;
+        flex-direction: column;
+        font-size: 0.8rem;
+        margin: 0.5rem 0;
+
+        .blog-img {
+          width: 300px;
+          height: 300px;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+  .blog-sub-container span,
+  .blog-author,
+  .blog-arrow span {
+    font-size: 0.8rem;
+  }
+  .blog-arrow img,
+  .blog-icon {
+    width: 1rem;
   }
 }

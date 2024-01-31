@@ -4,9 +4,8 @@
   box-sizing: border-box;
 }
 
-$bgColor: #F2CDA1;
-$myFontFamily: 'Roboto Mono', monospace;
-
+$bgColor: #f2cda1;
+$myFontFamily: "Roboto Mono", monospace;
 
 body {
   background-color: $bgColor;
@@ -16,4 +15,11 @@ body {
 #root {
   max-width: 1260px;
   margin: 0 auto;
-} 
+}
+
+@media screen and (min-width: 360px) and (max-width: 430px) {
+  #root {
+    width: 100%;
+    margin: 0 auto;
+  }
+}

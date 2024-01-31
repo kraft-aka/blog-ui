@@ -11,7 +11,7 @@ $btnFontColor: #fff;
   margin: 10rem auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-  .login-title{
+  .login-title {
     text-align: center;
     font-size: 2rem;
     margin: 1rem 0;
@@ -23,14 +23,14 @@ $btnFontColor: #fff;
     padding: 1rem 5rem;
 
     .login-label {
-      margin: .5rem 0;
+      margin: 0.5rem 0;
       font-weight: 700;
     }
-    .login-input{
-      padding: .5rem;
+    .login-input {
+      padding: 0.5rem;
       outline: none;
       border: none;
-      border-radius: .3rem;
+      border-radius: 0.3rem;
     }
     .login-cta {
       display: flex;
@@ -51,6 +51,34 @@ $btnFontColor: #fff;
   }
 }
 
-.login-btn:hover{
+.login-btn:hover {
   cursor: pointer;
+}
+
+@media screen and ( min-width: 360px ) and (max-width: 430px) {
+  .login-container {
+    width: 80%;
+    margin: 20% auto;
+  }
+  .login-title {
+    text-align: center;
+    font-size: 1.5rem !important ;
+    margin: 0.6rem 0 !important ;
+  }
+
+  .login-form {
+    padding: 2rem !important;
+
+    .login-label {
+      font-size: 0.8rem;
+    }
+    .login-cta {
+      justify-content: space-around;
+
+      .login-btn {
+        padding: 0.5rem 1rem !important ;
+        font-size: 0.8rem !important ;
+      }
+    }
+  }
 }

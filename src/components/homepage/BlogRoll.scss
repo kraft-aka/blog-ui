@@ -17,3 +17,25 @@
     font-weight: 700;
   }
 }
+
+@media screen and ( min-width: 360px ) and (max-width: 430px){
+  .blog-roll-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .blog-roll-header {
+    margin: 0 2.2rem !important;
+    margin-top: 1.1rem !important ;
+    display: flex;
+    justify-content: space-between !important;
+  }
+  
+  .blog-roll-title {
+    font-size: 1.1rem;  
+  }
+
+  .blog-roll-length {
+    font-weight: 700;
+    font-size: 1.1rem !important ;
+  }
+}

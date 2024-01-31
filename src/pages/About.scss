@@ -1,10 +1,12 @@
-.about-container{
+$textColor: #111;
+
+.about-container {
   max-width: 50rem;
   display: flex;
   flex-direction: column;
   margin: 2rem auto;
 
-  .about-title{
+  .about-title {
     text-align: center;
     font-size: 3rem;
     margin-bottom: 2rem;
@@ -12,11 +14,50 @@
   .about-content {
     line-height: 1.5;
   }
-  .about-content-header{
-    margin: .5rem 0;
+  .about-content-header {
+    margin: 0.5rem 0;
   }
 
-  .about-list-item{
+  .about-list-item {
     margin: 1rem 0;
+  }
+  a {
+    text-decoration: none;
+    color: $textColor;
+  }
+}
+
+@media screen and ( min-width: 360px ) and (max-width: 430px) {
+  .about-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .about-title {
+    font-size: 1.5rem !important;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .about-content,
+  .about-list-item {
+    font-size: 0.8rem;
+    margin: 0 1rem;
+    line-height: normal !important;
+  }
+
+  .about-content-header {
+    margin: 1rem !important;
+    font-size: 1rem !important ;
+  }
+
+  .about-list-item {
+    margin: 0 2rem !important;
+    margin-bottom: 1rem !important ;
+  }
+
+  .about-nav-back {
+    display: block;
+    margin-left: 18rem;
+    font-size: 1rem;
   }
 }
