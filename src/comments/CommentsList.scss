@@ -1,0 +1,16 @@
+$bGColor: #4a7e73;
+$btnColor: #111;
+$textWhiteColor: #fff;
+
+.comments-list-container {
+  width: 100%;
+  height: 100%;
+  
+  .comments-list-header {
+    margin: 1rem;
+
+    h1 {
+      color: $textWhiteColor;
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CommentsList from "../comments/CommentsList";
 import "./Comment.scss";
 
 function Comment({ closeComment }) {
@@ -67,6 +68,7 @@ function Comment({ closeComment }) {
           </button>
         </section>
       </form>
+      <CommentsList />
     </aside>
   );
 }
