@@ -1,5 +1,6 @@
 $textColor: #111;
 $textWhiteColor: #fff;
+$btnBgColor: #4a7e73;
 
 .navbar {
   display: flex;
@@ -15,7 +16,7 @@ $textWhiteColor: #fff;
   font-size: 1.5rem;
   color: $textWhiteColor;
   padding: 1rem 2rem;
-  background-color: #4a7e73;
+  background-color: $btnBgColor;
   border-radius: 0.3rem;
 }
 

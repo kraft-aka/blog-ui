@@ -1,29 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import like from "../assets/like.svg";
-import comment from "../assets/comment.svg";
-import arrowLeft from "../assets/arrow-left.svg";
+import Comment from "./Comment";
 import { getBlog } from "../API/blogs";
 import { basePath } from "../API/axiosInstance";
-import "./Blog.scss";
 import formatDate from "../utils/formatDate";
+import "./Blog.scss";
+import arrowLeft from "../assets/arrow-left.svg";
+import comment from "../assets/comment.svg";
+import like from "../assets/like.svg";
 
 export default function Blog() {
   const [singleBlog, setSingleBlog] = useState(null);
+  const [showComment, setShowComment] = useState(false);
   const { id } = useParams();
 
-  
+  function addComment() {
+    setShowComment(true);
+  }
+
+  function closeComment() {
+    setShowComment(false);
+  }
+
   useEffect(() => {
     getBlog(id).then((sb) => setSingleBlog(sb));
   }, [id]);
-  
 
   console.log(singleBlog);
   let srcImg =
     "https://images.unsplash.com/photo-1682685797741-f0213d24418c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D";
   if (singleBlog) {
     //srcImg = basePath + singleBlog.blog.blogImage.slice(1)
-    console.log(basePath + singleBlog.blog.blogImage)
+    console.log(basePath + singleBlog.blog.blogImage);
   }
 
   return (
@@ -52,7 +60,7 @@ export default function Blog() {
             </header>
             <figure className="blog-figure">
               <img src={srcImg} alt="main image" className="blog-img" />
-              <figcaption>Photograph: { }</figcaption>
+              <figcaption>Photograph: {}</figcaption>
             </figure>
           </section>
           <section className="blog-content">
@@ -61,7 +69,9 @@ export default function Blog() {
               <div className="blog-sub-container">
                 <div className="blog-sub-container-item-1">
                   <img src={comment} alt="" className="blog-icon" />
-                  <span className="blog-add-comment">Add comment...</span>
+                  <span className="blog-add-comment" onClick={addComment}>
+                    Add comment...
+                  </span>
                 </div>
                 <div className="blog-sum-container-item-1">
                   <span className="blog-add-like">
@@ -76,13 +86,14 @@ export default function Blog() {
                 </p>
                 <div className="blog-arrow">
                   <Link to="/">
-                    <img src={arrowLeft} alt="" />
+                    <img src={arrowLeft} alt="arrow back" />
                   </Link>
                   <span className="blog-arrow-text">Back</span>
                 </div>
               </div>
             </div>
           </section>
+          {showComment && <Comment closeComment={closeComment} />}
         </main>
       ) : (
         <h1>Loading...</h1>

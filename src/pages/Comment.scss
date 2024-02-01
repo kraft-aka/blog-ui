@@ -1,0 +1,116 @@
+$bGColor: #4a7e73;
+$btnColor: #111;
+$textWhiteColor: #fff;
+
+.comment-container {
+  width: 20rem;
+  height: auto;
+  background-color: $bGColor;
+  position: fixed;
+  overflow: auto;
+  right: 0;
+  border-radius: .5rem;
+  border: none;
+  
+  .comment-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1rem;
+    color: $textWhiteColor;
+
+    .comment-close-btn {
+      cursor: pointer;
+    }
+  }
+
+  .comment-form {
+    width: 100%;
+    height: 50%;
+    padding: 1rem;
+    
+    .icon-name-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      .user-name-comment {
+        color: $textWhiteColor;
+      }
+
+      .comment-user-icon {
+        width: 29px;
+        height: 29px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      
+    }
+    .comment-text {
+      width: 100%;
+      height: 10rem;
+      padding: 1rem;
+      box-sizing: border-box;
+      border-radius: .5rem;
+      border: none;
+      resize: none;
+      outline: none;
+      white-space: nowrap;
+      overflow: auto;
+      margin-bottom: 1rem;
+    }
+
+    .comment-cta-btns {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      .comment-btn {
+        padding: .5rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 700;
+        border: none;
+        border-radius: 2rem;
+        background-color: $btnColor;
+        color: $textWhiteColor;
+        cursor: pointer;
+        transition: all .4s ease-in-out;
+      }
+      .cancel {
+        border: $btnColor;
+        background-color: $textWhiteColor;
+        color:$btnColor;
+        margin-right: 1rem;
+      }
+    }
+  }
+}
+
+.comment-close-btn:hover {
+  font-weight: 700;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.comment-btn:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+}
+
+
+textarea {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+@media screen and ( min-width: 360px ) and (max-width: 430px){
+  .comment-container {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+
+    .comment-header {
+      width: 100%;
+      margin: 0;
+    }
+  }
+}

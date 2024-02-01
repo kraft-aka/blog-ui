@@ -17,7 +17,7 @@
         width: 29px;
         height: 29px;
         border-radius: 50%;
-        background-color: #ff6347;
+
         object-fit: cover;
       }
       span {
@@ -63,11 +63,17 @@
     margin: 0 2rem;
     align-items: center;
 
-    .blog-sum-container-item-1 {
+    .blog-sub-container-item-1 {
       display: flex;
       align-items: center;
+      justify-content: center;
+
+      .blog-add-comment {
+        transition: all .4s ease-in-out;
+        margin-left: 1rem;
+      }
     }
-    .blog-sum-container-item-1:nth-of-type(1n) {
+    .blog-sub-container-item-1:nth-of-type(1n) {
       margin-right: 4rem;
     }
   }
@@ -80,8 +86,14 @@
     .blog-arrow {
       display: flex;
       margin-right: 2rem;
+      transition: all .4s ease-in-out;
     }
   }
+}
+
+.blog-add-comment:hover, .blog-arrow:hover {
+  cursor: pointer;
+  font-weight: 700;
 }
 
 @media screen and ( min-width: 360px ) and (max-width: 430px){
