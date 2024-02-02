@@ -18,13 +18,19 @@ $btnBgColor: #4a7e73;
   padding: 1rem 2rem;
   background-color: $btnBgColor;
   border-radius: 0.3rem;
+  transition: all .4s ease-in-out;
 }
 
 .navbar-link:nth-of-type(1) {
   margin-right: 1rem;
 }
 
-@media screen and ( min-width: 360px ) and (max-width: 430px) {
+.navbar-link:hover {
+  box-shadow: 5px 4px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+}
+
+@media screen and (min-width: 360px) and (max-width: 430px) {
   .navbar {
     width: 100%;
     margin: 0 auto;

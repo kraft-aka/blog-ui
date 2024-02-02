@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CommentsList from "../comments/CommentsList";
 import "./Comment.scss";
+import inputValueIsValid from "../utils/inputValueIsValid";
 
 function Comment({ closeComment }) {
   const [inputValue, setInputValue] = useState("");
@@ -14,9 +15,6 @@ function Comment({ closeComment }) {
     setInputValue("");
   }
 
-  function inputValueIsValid(val) {
-    return val.trim() !== "";
-  }
 
   function submitCommentForm(e) {
     e.preventDefault();
