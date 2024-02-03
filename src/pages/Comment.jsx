@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CommentsList from "../comments/CommentsList";
+import CommentsList from '../components/comments/CommentsList'
 import "./Comment.scss";
 import inputValueIsValid from "../utils/inputValueIsValid";
 

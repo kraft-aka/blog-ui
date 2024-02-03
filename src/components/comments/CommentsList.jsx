@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { getComments } from "../API/comments";
+import { getComments } from "../../API/comments";
 import CommentCard from "./CommentCard";
-import './CommentsList.scss';
+import "./CommentsList.scss";
 
 export default function CommentsList() {
   const [commentsFetched, setCommentsFetched] = useState([]);

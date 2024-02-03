@@ -1,0 +1,38 @@
+$textColor: #111;
+$bgWhiteColor: #fff;
+$btnBgColor: #4a7e73;
+
+
+.user-card-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  height: auto;
+  background-color: $bgWhiteColor;
+  padding: 0 1rem;
+  border-radius: .5rem;
+
+  h3 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 1rem 0;
+  }
+
+  img {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 1rem;
+  }
+  .user-card-items {
+    margin-bottom: 2rem;
+    flex:none;
+
+    span {
+      font-weight: 700;
+    }
+  }
+}

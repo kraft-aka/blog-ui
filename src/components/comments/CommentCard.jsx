@@ -1,6 +1,6 @@
 import React from "react";
-import like from "../assets/like.svg";
-import comment from '../assets/comment.svg';
+import like from "../../assets/like.svg";
+import comment from '../../assets/comment.svg';
 import './CommentCard.scss';
 
 export default function CommentCard({ userIcon, userName, commentText, createdAt, likes }) {

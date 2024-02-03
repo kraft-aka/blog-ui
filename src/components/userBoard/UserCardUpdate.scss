@@ -1,0 +1,49 @@
+$btnColor: #111;
+$bgWhiteColor: #fff;
+$textWhiteColor: #fff;
+$inputBgColor: #f5f0f0;
+
+.user-card-update-container {
+  background-color: $bgWhiteColor;
+  border-radius: .5rem;
+  margin-top: 1rem;
+
+  .user-card-update-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding:1rem 2rem;
+  }
+
+  label {
+    margin: .5rem 0;
+  }
+  input {
+    padding: .4rem;
+    width: 100%;
+    outline: none;
+    font-weight: 700;
+    font-size: 1rem;
+    background-color: $inputBgColor;
+    border: none;
+    border-radius: .5rem;
+  }
+  .user-card-update-btn {
+    margin: 1rem 0;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 2rem;
+    background-color: $btnColor;
+    color: $textWhiteColor;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+  }
+}
+
+.user-card-update-btn:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+}
+

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.svg";
+import user from '../../assets/user.svg';
 import "./Navbar.scss";
 
 export default function Navbar() {
@@ -10,6 +11,7 @@ export default function Navbar() {
         <img src={logo} alt="logo" className="navbar-logo" />
       </Link>
       <div className="navbar-cta">
+        <Link to='/user' className="navbar-user"><img src={user} alt="default user icon" /></Link>
         <Link to="/signin" className="navbar-link">
           Sign In
         </Link>

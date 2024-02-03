@@ -1,0 +1,17 @@
+$textColor: #111;
+$bgWhiteColor: #fff;
+$btnColor: #111;
+$inputBgColor: #f5f0f0;
+$textWhiteColor: #fff;
+
+
+.blogs-list-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  background-color:$bgWhiteColor;
+  border-radius: .5rem;
+}
