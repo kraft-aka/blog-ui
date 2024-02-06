@@ -15,6 +15,15 @@ export default function SignUp() {
           className="signup-input"
           placeholder="userName@mail.com"
         />
+        <label htmlFor="signup-username" className="signup-label">
+          Username
+        </label>
+        <input
+          type="text"
+          id="signup-username"
+          className="signup-input"
+          placeholder="username"
+        />
         <label htmlFor="signup-user-password" className="signup-label">
           Password
         </label>
@@ -28,7 +37,7 @@ export default function SignUp() {
           <button type="submit" className="signup-btn">
             Sign up
           </button>
-    
+
         </div>
       </form>
     </div>
