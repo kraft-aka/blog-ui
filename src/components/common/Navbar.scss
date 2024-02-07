@@ -26,6 +26,18 @@ $btnBgColor: #4a7e73;
   transition: all .4s ease-in-out;
 }
 
+.navbar-btn {
+  border: 1px solid $btnBgColor;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: $textWhiteColor;
+  padding: 1rem 2rem;
+  background-color: $btnBgColor;
+  border-radius: 0.3rem;
+  transition: all .4s ease-in-out;
+  margin-right: 1rem ;
+}
+
 .navbar-link:nth-of-type(1n) {
   margin-right: 1rem;
 }
