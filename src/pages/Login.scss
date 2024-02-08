@@ -1,6 +1,7 @@
 $loginBgColor: #9debda;
 $btnBgColor: #111;
 $btnFontColor: #fff;
+$errorTextColor: #d70b0b;
 
 .login-container {
   margin: 0 auto;
@@ -32,6 +33,12 @@ $btnFontColor: #fff;
       border: none;
       border-radius: 0.3rem;
     }
+
+    .login-error-msg {
+      color: $errorTextColor;
+      margin-bottom: 0.2rem;
+      font-weight: 700;
+    }
     .login-cta {
       display: flex;
       align-items: center;
@@ -55,7 +62,7 @@ $btnFontColor: #fff;
   cursor: pointer;
 }
 
-@media screen and ( min-width: 360px ) and (max-width: 430px) {
+@media screen and (min-width: 360px) and (max-width: 430px) {
   .login-container {
     width: 80%;
     margin: 20% auto;
