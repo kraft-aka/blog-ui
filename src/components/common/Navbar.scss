@@ -42,7 +42,7 @@ $btnBgColor: #4a7e73;
   margin-right: 1rem;
 }
 
-.navbar-link:hover {
+.navbar-link:hover,.navbar-btn:hover {
   box-shadow: 5px 4px rgba(0, 0, 0, 0.15);
   transform: scale(1.05);
 }
