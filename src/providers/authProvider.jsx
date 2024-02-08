@@ -4,7 +4,9 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('token'));
+  const [loggedUser, setLoggedUser] = useState(null);
   const SetToken = (newToken) => setToken(newToken);
+  const SetLoggedUser = (newUser) => setLoggedUser(newUser);
 
   useEffect(() => {
     if (token) {
@@ -16,7 +18,7 @@ const AuthProvider = ({ children }) => {
     }
   }, [token]);
 
-  const ContextValue = useMemo(() => ({ token, SetToken }), [token]);
+  const ContextValue = useMemo(() => ({ token, SetToken, loggedUser, SetLoggedUser }), [token]);
   return (<AuthContext.Provider value={ContextValue}>{children}</AuthContext.Provider>)
 }
 

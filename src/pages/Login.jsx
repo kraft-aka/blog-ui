@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../providers/authProvider";
 import "./Login.scss";
 
 export default function Login() {
+  const { SetToken, SetLoggedUser } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailErr, setEmailErr] = useState("");
@@ -39,15 +41,17 @@ export default function Login() {
           password: password,
         })
         .then((response) => {
-          console.log(response);
+          SetLoggedUser(response.data.user);
+          SetToken(response.data.token);
           setIsLoading(false);
+          setEmail("");
+          setPassword("");
         })
         .catch((error) => console.log(error, "No such user."));
       setIsLoading(true);
-    } 
+    }
     setIsLoading(false);
   };
-
 
   return (
     <>
