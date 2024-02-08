@@ -43,6 +43,7 @@ export default function Login() {
         .then((response) => {
           SetLoggedUser(response.data.user);
           SetToken(response.data.token);
+          localStorage.setItem('user', response.data.user.userName)
           setIsLoading(false);
           setEmail("");
           setPassword("");

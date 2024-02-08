@@ -45,6 +45,7 @@ $btnBgColor: #4a7e73;
 .navbar-link:hover,.navbar-btn:hover {
   box-shadow: 5px 4px rgba(0, 0, 0, 0.15);
   transform: scale(1.05);
+  cursor: pointer;
 }
 
 @media screen and (min-width: 360px) and (max-width: 430px) {

@@ -6,7 +6,7 @@ import "./Navbar.scss";
 import { useAuth } from "../../providers/authProvider";
 
 export default function Navbar() {
-  const { token, loggedUser } = useAuth();
+  const { token, loggedUser, Logout } = useAuth();
   return (
     <nav className="navbar">
       <Link to="/">
@@ -18,13 +18,13 @@ export default function Navbar() {
             <img src={user} alt="default user icon" />
           </Link>
         )}
-        {token && <button className="navbar-btn">Log Out</button>}
-        {loggedUser && (
+        {token && <button className="navbar-btn" onClick={Logout}>Log Out</button>}
+        {!loggedUser && (
           <Link to="/signin" className="navbar-link">
             Sign In
           </Link>
         )}
-        {loggedUser && (
+        {!loggedUser && (
           <Link to="/signup" className="navbar-link">
             Sign Up
           </Link>
