@@ -61,3 +61,33 @@ $textColor: #111;
     font-size: 1rem;
   }
 }
+
+
+@media screen and (max-width: 650px) {
+  .about-container {
+    width: 100%;
+    margin: 0 auto;
+
+    .about-title {
+      font-size: 1.8rem;
+      margin-top: 1rem;
+    }
+
+    .about-content, .about-list-item  {
+      font-size: 1rem;
+      margin: 0 2rem;
+    }
+    .about-content-header {
+      margin: 1rem 2rem;
+    }
+    .about-nav-back {
+      display: block;
+      margin-left: 36rem;
+      font-size: 1rem;
+    }
+    .about-list-item {
+      margin: 0 2rem !important;
+      margin-bottom: 1rem !important ;
+    }
+  }
+}

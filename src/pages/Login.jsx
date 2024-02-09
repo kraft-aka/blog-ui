@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../providers/authProvider";
 import "./Login.scss";
@@ -11,6 +11,8 @@ export default function Login() {
   const [emailErr, setEmailErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+
 
   const validateInput = () => {
     let isRequired = true;
@@ -43,6 +45,7 @@ export default function Login() {
         .then((response) => {
           SetLoggedUser(response.data.user);
           SetToken(response.data.token);
+          console.log(response.data.user)
           localStorage.setItem('user', response.data.user.userName)
           setIsLoading(false);
           setEmail("");

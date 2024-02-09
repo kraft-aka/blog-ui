@@ -13,5 +13,19 @@
   .user-dashboard-components {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+  }
+}
+
+
+@media screen and (max-width: 650px) {
+  .user-dashboard-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .user-dashboard-components {
+    display: flex !important;
+    flex-direction: column !important;
   }
 }

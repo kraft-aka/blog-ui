@@ -151,3 +151,10 @@
     width: 1rem;
   }
 }
+
+
+@media screen and (max-width: 650px) {
+  .blog-sum-container-item-1 {
+    margin-right: 3rem;
+  }
+}
