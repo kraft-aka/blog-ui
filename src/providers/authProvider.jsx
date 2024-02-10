@@ -4,25 +4,26 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [loggedUser, setLoggedUser] = useState(localStorage.getItem('user'));
+  const [loggedUser, setLoggedUser] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
   const SetToken = (newToken) => setToken(newToken);
-  const SetLoggedUser =  (newUser) => setLoggedUser(newUser);
+  const SetLoggedUser = (newUser) => setLoggedUser(newUser);
 
   const Logout = () => {
-    localStorage.clear();
-    setToken("");
+    setToken(null);
     setLoggedUser(null);
   };
-
-  console.log(loggedUser)
 
   useEffect(() => {
     if (token) {
       axios.defaults.headers.common["Authorization"] = `JWT ${token}`;
       localStorage.setItem("token", token);
+      localStorage.setItem('user',JSON.stringify(loggedUser))
     } else {
       delete axios.defaults.headers.common["Authorization"];
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
     }
   }, [token]);
 

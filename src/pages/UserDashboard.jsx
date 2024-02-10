@@ -6,7 +6,9 @@ import "./UserDashboard.scss";
 import { useAuth } from "../providers/authProvider";
 
 export default function UserDashboard() {
-  const { loggedUser} = useAuth();
+  const { loggedUser } = useAuth();
+  
+
   return (
     <div className="user-dashboard-container">
       <header className="user-dashboard-header">

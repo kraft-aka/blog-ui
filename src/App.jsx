@@ -13,7 +13,8 @@ import Navbar from "./components/common/Navbar";
 import Footer from "./components/common/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthProvider from "./providers/authProvider";
-import { ProtectedRoute } from "./utils/protectedRoutes";
+import ProtectedRoutes from "./utils/protectedRoutes";
+import PublicRoutes from "./utils/PublicRoutes";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
       <AuthProvider>
         <Navbar />
         <Routes>
-          <Route element={<ProtectedRoute />}>
+          <Route element={<ProtectedRoutes />}>
             <Route path="/user" element={<UserDashboard />} />
             <Route path="/write" element={<Write />} />
           </Route>
@@ -30,8 +31,10 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/signin" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route element={<PublicRoutes />}>
+            <Route path="/signin" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+          </Route>
           <Route path="/" element={<Home />} />
         </Routes>
         <Footer />
