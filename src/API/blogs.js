@@ -23,4 +23,13 @@ async function getBlog(blogId) {
   }
 }
 
-export { getAllBlogs, getBlog };
+async function createBlog(blog) {
+  try {
+    const newBlog = await axiosInstance.post('newblog', blog);
+    return newBlog.data;
+  } catch (err) {
+    return false;
+  }
+}
+
+export { getAllBlogs, getBlog, createBlog };

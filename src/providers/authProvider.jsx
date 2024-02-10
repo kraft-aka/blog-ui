@@ -1,4 +1,5 @@
-import axios from "axios";
+//import axios from "axios";
+import axiosInstance from "../API/axiosInstance";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 const AuthContext = createContext();
@@ -17,11 +18,13 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (token) {
-      axios.defaults.headers.common["Authorization"] = `JWT ${token}`;
+      //axios.defaults.headers.common["Authorization"] = `JWT ${token}`;
+      axiosInstance.defaults.headers.common['Authorization'] = `JWT ${token}`
       localStorage.setItem("token", token);
-      localStorage.setItem('user',JSON.stringify(loggedUser))
+      localStorage.setItem('user', JSON.stringify(loggedUser))
     } else {
-      delete axios.defaults.headers.common["Authorization"];
+      //delete axios.defaults.headers.common["Authorization"];
+      delete axiosInstance.defaults.headers.common['Authorization'];
       localStorage.removeItem("token");
       localStorage.removeItem("user");
     }
