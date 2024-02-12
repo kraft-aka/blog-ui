@@ -1,0 +1,50 @@
+$cardBgColor: #9debda;
+$bgWhiteColor: #fff;
+$btnColor: #111;
+$textWhiteColor: #fff;
+
+.blog-user-container {
+  margin: .5rem;
+  background-color: $cardBgColor;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: .5rem;
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  span {
+    font-weight: 400;
+  }
+  .blog-user-cta {
+    margin-top: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    .blog-user-btn {
+      margin: 1rem 0;
+      padding: 0.5rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 2rem;
+      background-color: $btnColor;
+      color: $textWhiteColor;
+      cursor: pointer;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .delete {
+      background-color: $bgWhiteColor;
+      color: $btnColor;
+      margin-left: 1rem;
+    }
+  }
+}
+
+.blog-user-container button:hover {
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  }

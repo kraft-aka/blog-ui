@@ -10,8 +10,21 @@ $textWhiteColor: #fff;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  width: 100%;
+  width: inherit;
   height: auto;
   background-color:$bgWhiteColor;
   border-radius: .5rem;
+
+  .blogs-list-header {
+    margin-top: 1rem;
+    h3 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .blogs-list-items {
+    width: inherit;
+    overflow: auto;
+    align-self: flex-start;
+  }
 }
