@@ -20,7 +20,7 @@ export default function BlogsList() {
 
   function handleDeleteBlog(blogId) {
     // axiosInstance.delete(`${blogId}`);
-    deleteBlog()
+    deleteBlog(blogId)
       .then((response) => {
         if (response.ok) {
           setBlogs(userBlogs.filter((b) => b._id != blogId));
@@ -40,7 +40,7 @@ export default function BlogsList() {
   return (
     <main className="blogs-list-container">
       <header className="blogs-list-header">
-        <h3>Published Blogs</h3>
+        <h3>Published Blogs <span>({userBlogs.length})</span></h3>
       </header>
       <section className="blogs-list-items">
         <>{userBlogs}</>

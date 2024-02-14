@@ -46,9 +46,8 @@ async function deleteBlog(blogId) {
   try {
     const blog = await axiosInstance.delete(`blogs/deleteblog/${blogId}`, blogId)
     console.log(blog)
-    return blog.data
+    return blog.data.blogs
   } catch (err) {
-    console.log(err.status)
     return false
   }
 }
