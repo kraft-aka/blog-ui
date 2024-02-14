@@ -48,12 +48,13 @@ export default function BlogsList() {
       <section className="blogs-list-info">
         <h3>Infographics</h3>
         <div className="blogs-list-info-total-likes">
-          <p>Total Likes</p>
-          <p>15</p>
+          <p>Total Likes: <span></span></p>
         </div>
         <div className="blogs-list-info-total-blogs">
-          <p>Total Blogs</p>
-          <p>3</p>
+          <p>Total Blogs: <span> {userBlogs.length} </span></p>
+        </div>
+        <div className="blogs-list-info-total-comments">
+          <p>Total Comments: <span> </span></p>
         </div>
       </section>
     </main>

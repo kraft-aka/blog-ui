@@ -3,28 +3,53 @@ $bgWhiteColor: #fff;
 $btnColor: #111;
 $inputBgColor: #f5f0f0;
 $textWhiteColor: #fff;
+$bgInfo: #f5f0f0;
 
 
 .blogs-list-container{
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
   width: inherit;
   height: auto;
   background-color:$bgWhiteColor;
   border-radius: .5rem;
+  padding: 1rem;
 
   .blogs-list-header {
-    margin-top: 1rem;
+    margin: 1rem 0;
     h3 {
       font-size: 1.5rem;
     }
   }
-
+  
   .blogs-list-items {
-    width: inherit;
     overflow: auto;
-    align-self: flex-start;
+    margin: 1rem 0;
+  }
+  .blogs-list-info {
+    width: 100%;
+    background-color: $bgInfo;
+    display: flex;
+    flex-direction: column;
+    border-radius: .5rem;
+    padding: 1rem;
+
+    h3 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin: 0.5rem 0;
+
+      span{
+        font-weight: 700;
+      }
+    }
+  
+
+
   }
 }
