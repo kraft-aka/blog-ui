@@ -52,4 +52,14 @@ async function deleteBlog(blogId) {
   }
 }
 
-export { getAllBlogs, getBlog, createBlog, deleteBlog, getUserBlogs };
+async function editBlog(blogId) {
+  try {
+    const blog = await axiosInstance.put(`blogs/${blogId}`)
+    console.log(blog)
+  } catch (err) {
+    console.log(err)
+    return false;
+  }
+}
+
+export { getAllBlogs, getBlog, createBlog, deleteBlog, getUserBlogs, editBlog };
