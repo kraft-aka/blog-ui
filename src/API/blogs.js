@@ -12,11 +12,21 @@ async function getAllBlogs() {
   }
 }
 
+async function getUserBlogs(userId) {
+  try {
+    const res = await axiosInstance.get(`blogs/?user=${userId}`);
+    return res.data.blogs;
+  } catch (err) {
+    console.log(err)
+    return false
+  }
+}
+
 async function getBlog(blogId) {
   try {
 
-    const res = await axiosInstance.get(`blogs/${blogId}`);
-    return res.data
+    const res = await axiosInstance.get(`blogs/?user=${blogId}`);
+    return res.data.blogs
   } catch (err) {
     console.log(err)
     return false
@@ -32,4 +42,15 @@ async function createBlog(blog) {
   }
 }
 
-export { getAllBlogs, getBlog, createBlog };
+async function deleteBlog(blogId) {
+  try {
+    const blog = await axiosInstance.delete(`blogs/deleteblog/${blogId}`, blogId)
+    console.log(blog)
+    return blog.data
+  } catch (err) {
+    console.log(err.status)
+    return false
+  }
+}
+
+export { getAllBlogs, getBlog, createBlog, deleteBlog, getUserBlogs };

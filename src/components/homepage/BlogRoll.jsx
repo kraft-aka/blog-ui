@@ -3,6 +3,7 @@ import BlogCard from "./BlogCard";
 import "./BlogRoll.scss";
 import { getAllBlogs } from "../../API/blogs";
 
+
 export default function BlogRoll() {
   const [blogs, setBlogs] = useState([]);
 
@@ -13,6 +14,7 @@ export default function BlogRoll() {
   useEffect(() => {
     getAllBlogs().then((fetchedBlogs) => setBlogs(fetchedBlogs));
   }, []);
+  console.log(blogs)
 
   return (
     <>
