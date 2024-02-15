@@ -7,7 +7,7 @@ async function getAllBlogs() {
     const res = await axiosInstance.get('blogs/');
     return res.data.blogs;
   } catch (err) {
-    console.log(err)
+
     return false
   }
 }
@@ -17,7 +17,7 @@ async function getUserBlogs(userId) {
     const res = await axiosInstance.get(`blogs/?user=${userId}`);
     return res.data.blogs;
   } catch (err) {
-    console.log(err)
+
     return false
   }
 }
@@ -25,10 +25,9 @@ async function getUserBlogs(userId) {
 async function getBlog(blogId) {
   try {
 
-    const res = await axiosInstance.get(`blogs/?user=${blogId}`);
-    return res.data.blogs
+    const res = await axiosInstance.get(`blogs/${blogId}`);
+    return res.data.blog
   } catch (err) {
-    console.log(err)
     return false
   }
 }
@@ -45,8 +44,7 @@ async function createBlog(blog) {
 async function deleteBlog(blogId) {
   try {
     const blog = await axiosInstance.delete(`blogs/deleteblog/${blogId}`, blogId)
-    console.log(blog)
-    return blog.data.blogs
+    return blog.data.msg
   } catch (err) {
     return false
   }
@@ -55,9 +53,7 @@ async function deleteBlog(blogId) {
 async function editBlog(blogId) {
   try {
     const blog = await axiosInstance.put(`blogs/${blogId}`)
-    console.log(blog)
   } catch (err) {
-    console.log(err)
     return false;
   }
 }

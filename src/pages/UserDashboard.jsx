@@ -31,7 +31,7 @@ export default function UserDashboard() {
         <CreateBlog />
         <BlogsList handleEdit={handleEdit} showEdit={showEdit} setshowEdit={setshowEdit} />
       </section>
-      {showEdit && <EditBlog />}
+      {showEdit && <EditBlog handleEditClose={handleEditClose}/>}
     </div>
   );
 }

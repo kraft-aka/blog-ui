@@ -10,27 +10,26 @@ export default function BlogsList({ handleEdit, showEdit, setShowEdit}) {
   const { loggedUser } = useAuth();
 
   useEffect(() => {
-    getUserBlogs().then((userBlogs) => setBlogs(userBlogs));
+    getUserBlogs(loggedUser.id).then((userBlogs) => setBlogs(userBlogs));
   }, [loggedUser.id]);
 
-  // filter out the blogs of particular user
-  const renderBlogs = blogs.filter((b) => b.createdBy._id == loggedUser.id);
 
   function handleDeleteBlog(blogId) {
     deleteBlog(blogId)
       .then((response) => {
-        if (response.ok) {
-          setBlogs(userBlogs.filter((b) => b._id != blogId));
+        if (response) {
+          setBlogs(blogs.filter((b) => b._id != blogId));
         } else {
-          throw new Error("Failed to delete blog", response.status);
+          alert('Can not remove this blog');
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert('Can not remove this blog'));
   }
 
-  const userBlogs = renderBlogs.map((userBlog) => {
+  const userBlogs = blogs.map((userBlog) => {
     return (
       <BlogPublishedCard
+        key={userBlog._id}
         blogs={userBlog}
         handleDeleteBlog={handleDeleteBlog}
         handleEdit={handleEdit}

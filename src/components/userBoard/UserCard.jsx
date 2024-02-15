@@ -6,7 +6,6 @@ export default function UserCard() {
 
   const { loggedUser } = useAuth();
   const { userName, email } = loggedUser;
-  console.log(loggedUser)
   let imgSrc =
     "https://images.unsplash.com/photo-1705848533403-6a5427e6f466?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHx8";
   return (

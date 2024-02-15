@@ -52,7 +52,7 @@ export default function Login() {
           setPassword("");
           navigate('/user')
         })
-        .catch((error) => console.log(error, "No such user."));
+        .catch((error) => alert("No such user."));
       setIsLoading(true);
     }
     setIsLoading(false);

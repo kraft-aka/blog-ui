@@ -5,7 +5,6 @@ async function getUser() {
     const res = await axiosInstance.post('signin');
     return res.data;
   } catch (err) {
-    console.log(err)
     return false
   }
 }

@@ -23,20 +23,21 @@ export default function Blog() {
   }
 
   useEffect(() => {
-    getBlog(id).then((sb) => setSingleBlog(sb));
+    getBlog(id).then((sb) => {
+      setSingleBlog(sb)});
+
   }, [id]);
 
-  console.log(singleBlog);
   let srcImg =
     "https://images.unsplash.com/photo-1682685797741-f0213d24418c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D";
 
     let srcIcon =
     "https://images.unsplash.com/photo-1682685797741-f0213d24418c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D";  
-  if (singleBlog && singleBlog.blog.blogImage) {
+  if (singleBlog  && singleBlog.blog && singleBlog.blog.blogImage) {
     srcImg = basePath + singleBlog.blog.blogImage.slice(1)
   }
 
-  if (singleBlog && singleBlog.blog.createdBy.userIcon) {
+  if (singleBlog && singleBlog.blog && singleBlog.blog.createdBy.userIcon) {
     srcIcon = basePath + singleBlog.blog.createdBy.userIcon.slice(1)
   }
 
@@ -51,20 +52,20 @@ export default function Blog() {
         <main className="blog-container">
           <section className="blog-container-top">
             <header className="blog-header">
-              <h1 className="blog-title">{singleBlog.blog.title}</h1>
+              <h1 className="blog-title">{singleBlog.title}</h1>
               <img src={srcIcon} alt="user-icon" className="blog-user-icon" />
-              <span>{singleBlog.blog.createdBy.userName}</span>
+              <span>{singleBlog.createdBy.userName}</span>
               <p className="blog-date">
-                {formatDate(singleBlog.blog.createdAt)}
+                {formatDate(singleBlog.createdAt)}
               </p>
               <div className="blog-like-comment-container">
                 <p className="blog-like-comment">
-                  {singleBlog.blog.likes.length}
+                  {singleBlog.likes.length}
                 </p>
                 <img src={comment} alt="comment icon" className="blog-icon" />
                 <p className="blog-like-comment">|</p>
                 <p className="blog-like-comment">
-                  {singleBlog.blog.likes.length}
+                  {singleBlog.likes.length}
                 </p>
                 <img src={like} alt="thumb up" className="blog-icon" />
               </div>
@@ -75,7 +76,7 @@ export default function Blog() {
             </figure>
           </section>
           <section className="blog-content">
-            <p>{singleBlog.blog.blogContent}</p>
+            <p>{singleBlog.blogContent}</p>
             <div className="blog-comment-like-section">
               <div className="blog-sub-container">
                 <div className="blog-sub-container-item-1">
@@ -86,14 +87,14 @@ export default function Blog() {
                 </div>
                 <div className="blog-sum-container-item-1">
                   <span className="blog-add-like">
-                    {singleBlog.blog.likes.length}
+                    {singleBlog.likes.length}
                   </span>
                   <img src={like} alt="" className="blog-icon" />
                 </div>
               </div>
               <div className="blog-cta">
                 <p className="blog-author">
-                  Written by {singleBlog.blog.createdBy.userName}
+                  Written by {singleBlog.createdBy.userName}
                 </p>
                 <div className="blog-arrow">
                   <Link to="/">

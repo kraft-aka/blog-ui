@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import './EditBlog.scss'
 
-export default function EditBlog({ setShowEdit }) {
+export default function EditBlog({ handleEditClose }) {
 
 
   function handleSubmitEditBlog(e) {
     e.preventDefault();
-    console.log('submitted')
   }
 
   return (
@@ -24,7 +23,7 @@ export default function EditBlog({ setShowEdit }) {
           <br />
           <div className="edit-blog-cta">
             <input type='submit' className='edit-blog-btn' />
-            <input type='reset' onClick={setShowEdit(false)} className='edit-blog-btn cancel' />
+            <input type='reset' onClick={handleEditClose} className='edit-blog-btn cancel' />
           </div>
         </form>
       </section>

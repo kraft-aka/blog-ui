@@ -30,7 +30,6 @@ export default function Contact() {
       !inputEmailIsValid(email) &&
       !inputValueIsValid(msg)
     ) {
-      console.log("can not submit");
       return;
     }
     const sendData = {
@@ -40,7 +39,6 @@ export default function Contact() {
       date: new Date(),
     };
 
-    console.log(sendData);
     setName("");
     setEmail("");
     setMsg("");

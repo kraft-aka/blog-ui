@@ -14,7 +14,7 @@ export default function BlogRoll() {
   useEffect(() => {
     getAllBlogs().then((fetchedBlogs) => setBlogs(fetchedBlogs));
   }, []);
-  console.log(blogs)
+
 
   return (
     <>

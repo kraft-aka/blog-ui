@@ -5,7 +5,6 @@ async function getComments() {
     const res = await axiosInstance.get('comments');
     return res.data.comments;
   } catch (err) {
-    console.log(err)
     return false
   }
 }

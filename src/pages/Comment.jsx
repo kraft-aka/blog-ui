@@ -7,7 +7,6 @@ function Comment({ closeComment }) {
   const [inputValue, setInputValue] = useState("");
 
   function inputValueChangeHandler(e) {
-    console.log(e.target.value);
     setInputValue(e.target.value);
   }
 
@@ -19,10 +18,9 @@ function Comment({ closeComment }) {
   function submitCommentForm(e) {
     e.preventDefault();
     if (inputValue == inputValueIsValid(inputValue)) {
-      console.log("empty comment can not be submitted");
       return;
     } else {
-      console.log("submitted");
+      alert('submitted')
     }
   }
 
