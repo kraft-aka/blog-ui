@@ -5,7 +5,7 @@ import BlogPublishedCard from "./BlogPublishedCard";
 import { deleteBlog } from "../../API/blogs";
 import { useAuth } from "../../providers/authProvider";
 
-export default function BlogsList({ handleEdit, showEdit, setShowEdit}) {
+export default function BlogsList({ handleEdit, setShowEdit }) {
   const [blogs, setBlogs] = useState([]);
   const { loggedUser } = useAuth();
 
@@ -33,7 +33,6 @@ export default function BlogsList({ handleEdit, showEdit, setShowEdit}) {
         blogs={userBlog}
         handleDeleteBlog={handleDeleteBlog}
         handleEdit={handleEdit}
-        showEdit={showEdit}
         setShowEdit={setShowEdit}
       />
     );
