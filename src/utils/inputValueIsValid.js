@@ -3,4 +3,8 @@ function inputValueIsValid(val) {
 }
 
 
-export default inputValueIsValid;
+function inputEmailIsValid(val) {
+  return val.trim !== '' && val.indexOf('@') !== -1
+}
+
+export { inputValueIsValid, inputEmailIsValid };

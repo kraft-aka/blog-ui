@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import inputValueIsValid from "../utils/inputValueIsValid";
+import {inputValueIsValid} from "../utils/inputValueIsValid";
 import "./Contact.scss";
 
 export default function Contact() {

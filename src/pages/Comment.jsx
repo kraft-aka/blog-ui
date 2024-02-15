@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CommentsList from '../components/comments/CommentsList'
 import "./Comment.scss";
-import inputValueIsValid from "../utils/inputValueIsValid";
+import {inputValueIsValid} from "../utils/inputValueIsValid";
 
 function Comment({ closeComment }) {
   const [inputValue, setInputValue] = useState("");

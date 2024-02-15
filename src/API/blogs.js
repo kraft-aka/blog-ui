@@ -53,6 +53,7 @@ async function deleteBlog(blogId) {
 async function editBlog(blogId) {
   try {
     const blog = await axiosInstance.put(`blogs/${blogId}`)
+    return blog.data.blog
   } catch (err) {
     return false;
   }
