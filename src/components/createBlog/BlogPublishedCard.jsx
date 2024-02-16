@@ -3,7 +3,7 @@ import formatDate from "../../utils/formatDate";
 import "./BlogPublishedCard.scss";
 import EditBlog from './EditBlog';
 
-export default function BlogPublishedCard({
+export default function BlogPublishedCard({handleDeleteBlog,
   blogs
 }) {
   const { _id, title, createdAt } = blogs;

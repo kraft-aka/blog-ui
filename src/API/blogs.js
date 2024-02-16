@@ -59,4 +59,14 @@ async function editBlog(blogId) {
   }
 }
 
-export { getAllBlogs, getBlog, createBlog, deleteBlog, getUserBlogs, editBlog };
+async function getPaginatedBlogs(userId, page, limit) {
+  try {
+    const res = await axiosInstance.get(`blogs/?user=${userId}&page=${page}&limit=${limit}`);
+    return res.data.results;
+  } catch (err) {
+
+    return false
+  }
+}
+
+export { getAllBlogs, getBlog, createBlog, deleteBlog, getUserBlogs, editBlog, getPaginatedBlogs };
