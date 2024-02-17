@@ -57,6 +57,11 @@ $textWhiteColor: #fff;
     input[type="file"] {
       margin: 0.5rem 0;
     }
+
+    .blog-error-msg {
+      color: red;
+      margin-bottom: .3rem;
+    }
     .create-blog-cta {
       display: flex;
       justify-content: space-evenly;

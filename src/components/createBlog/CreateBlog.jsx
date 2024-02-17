@@ -1,17 +1,25 @@
 import React, { useState } from "react";
 import "./CreateBlog.scss";
 import { createBlog } from "../../API/blogs";
+import { inputValueIsValid } from "../../utils/inputValueIsValid";
 
 export default function CreateBlog() {
   const [newTitle, setNewTitle] = useState("");
   const [newContent, setNewContent] = useState("");
+  const [errorMsg, setErrorMsg] = useState(false);
 
   const submitBlog = async (e) => {
     e.preventDefault();
-    const blog = await createBlog({
+
+    if (!inputValueIsValid(newTitle) && !inputValueIsValid(newContent)) {
+      setErrorMsg(true);
+      return;
+    }
+    await createBlog({
       title: newTitle,
       blogContent: newContent,
     });
+    setErrorMsg(false);
     setNewTitle("");
     setNewContent("");
   };
@@ -23,6 +31,7 @@ export default function CreateBlog() {
       </header>
       <form className="create-blog-form" onSubmit={submitBlog}>
         <label htmlFor="title">Title</label>
+        {errorMsg && <p className="blog-error-msg">Title must not be empty</p>}
         <input
           type="text"
           value={newTitle}
@@ -30,6 +39,9 @@ export default function CreateBlog() {
         />
         <br />
         <label htmlFor="content">Content</label>
+        {errorMsg && (
+          <p className="blog-error-msg">Content must not be empty</p>
+        )}
         <textarea
           className="create-blog-content"
           value={newContent}
