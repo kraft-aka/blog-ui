@@ -4,11 +4,13 @@ import { getPaginatedBlogs } from "../../API/blogs";
 import BlogPublishedCard from "./BlogPublishedCard";
 import { deleteBlog } from "../../API/blogs";
 import { useAuth } from "../../providers/authProvider";
+import Pagination from "../pagination/Pagination";
 
 export default function BlogsList({ handleEdit, setShowEdit }) {
   const [blogsPaginated, setBlogsPaginated] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentBlogsLimit, setCurrentBlogsLimit] = useState(3);
+  const [blogsNumber, setBlogsNumber] = useState(null)
   const { loggedUser } = useAuth();
 
   useEffect(() => {
@@ -16,6 +18,13 @@ export default function BlogsList({ handleEdit, setShowEdit }) {
       (userBlogs) => setBlogsPaginated(userBlogs.results)
     );
   }, [loggedUser.id, currentPage]);
+
+  useEffect(() => {
+    getPaginatedBlogs(loggedUser.id, currentPage, currentBlogsLimit).then(
+      (userBlogs) => setBlogsNumber(userBlogs.blogsCount)
+    );
+  }, [loggedUser.id, currentPage]);
+
 
   function handleDeleteBlog(blogId) {
     deleteBlog(blogId)
@@ -44,12 +53,16 @@ export default function BlogsList({ handleEdit, setShowEdit }) {
   return (
     <main className="blogs-list-container">
       <header className="blogs-list-header">
-        <h3>
-          Published Blogs
-        </h3>
+        <h3>Published Blogs</h3>
       </header>
       <section className="blogs-list-items">
         <>{userBlogs}</>
+        <Pagination
+          currentPage={currentPage}
+          currentBlogsLimit={currentBlogsLimit}
+          blogsNumber={blogsNumber}
+          onPageChange={(page) => setCurrentPage(page)}
+        />
       </section>
       <section className="blogs-list-info">
         <h3>Infographics</h3>
@@ -60,7 +73,7 @@ export default function BlogsList({ handleEdit, setShowEdit }) {
         </div>
         <div className="blogs-list-info-total-blogs">
           <p>
-            Total Blogs: <span> {userBlogs.length} </span>
+            Total Blogs: <span> {blogsNumber} </span>
           </p>
         </div>
         <div className="blogs-list-info-total-comments">
