@@ -1,14 +1,11 @@
-import axiosInstance from './axiosInstance';
-
-
+import axiosInstance from "./axiosInstance";
 
 async function getAllBlogs() {
   try {
-    const res = await axiosInstance.get('blogs/');
+    const res = await axiosInstance.get("blogs/");
     return res.data.blogs;
   } catch (err) {
-
-    return false
+    return false;
   }
 }
 
@@ -17,24 +14,22 @@ async function getUserBlogs(userId) {
     const res = await axiosInstance.get(`blogs/?user=${userId}`);
     return res.data.blogs;
   } catch (err) {
-
-    return false
+    return false;
   }
 }
 
 async function getBlog(blogId) {
   try {
-
     const res = await axiosInstance.get(`blogs/${blogId}`);
-    return res.data.blog
+    return res.data.blog;
   } catch (err) {
-    return false
+    return false;
   }
 }
 
 async function createBlog(blog) {
   try {
-    const newBlog = await axiosInstance.post('newblog', blog);
+    const newBlog = await axiosInstance.post("newblog", blog);
     return newBlog.data;
   } catch (err) {
     return false;
@@ -43,17 +38,20 @@ async function createBlog(blog) {
 
 async function deleteBlog(blogId) {
   try {
-    const blog = await axiosInstance.delete(`blogs/deleteblog/${blogId}`, blogId)
-    return blog.data.msg
+    const blog = await axiosInstance.delete(
+      `blogs/deleteblog/${blogId}`,
+      blogId
+    );
+    return blog.data.msg;
   } catch (err) {
-    return false
+    return false;
   }
 }
 
-async function editBlog(blogId) {
+async function editBlog(blogId, editedBlog) {
   try {
-    const blog = await axiosInstance.put(`blogs/${blogId}`)
-    return blog.data.blog
+    const blog = await axiosInstance.put(`blogs/${blogId}`, editedBlog);
+    return blog;
   } catch (err) {
     return false;
   }
@@ -61,12 +59,31 @@ async function editBlog(blogId) {
 
 async function getPaginatedBlogs(userId, page, limit) {
   try {
-    const res = await axiosInstance.get(`blogs/?user=${userId}&page=${page}&limit=${limit}`);
+    const res = await axiosInstance.get(
+      `blogs/?user=${userId}&page=${page}&limit=${limit}`
+    );
     return res.data.results;
   } catch (err) {
-
-    return false
+    return false;
   }
 }
 
-export { getAllBlogs, getBlog, createBlog, deleteBlog, getUserBlogs, editBlog, getPaginatedBlogs };
+async function addImage(blogId) {
+  try {
+    const res = await axiosInstance.post(`blogs/addImage/${blogId}`);
+    return res.blog.blogImage;
+  } catch (err) {
+    return false;
+  }
+}
+
+export {
+  getAllBlogs,
+  getBlog,
+  createBlog,
+  deleteBlog,
+  getUserBlogs,
+  editBlog,
+  getPaginatedBlogs,
+  addImage,
+};

@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import './EditBlog.scss'
 import { editBlog } from '../../API/blogs';
+import toast from 'react-hot-toast';
 
 export default function EditBlog({ handleEditClose, blogs }) {
   const [editTitle, setEditTitle] = useState(blogs.title);
   const [editContent, setEditContent] = useState(blogs.blogContent)
+  const [updatedBlog, setUpdatedBlog] = useState(null)
 
   function handleTitleChange(e) {
     setEditTitle(e.target.value)
@@ -22,8 +24,10 @@ export default function EditBlog({ handleEditClose, blogs }) {
   function handleSubmitEditBlog(e) {
     e.preventDefault();
     editBlog(blogs._id, editedBlog).then(response => {
-      alert(JSON.stringify(response))
-    })
+      setUpdatedBlog(response.data.blog)
+      toast.success('Blog has been successfully updated!')
+      handleEditClose()
+    }).catch(error => toast.error(error))
   }
 
   return (
