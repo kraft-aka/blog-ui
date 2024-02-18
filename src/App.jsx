@@ -15,6 +15,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthProvider from "./providers/authProvider";
 import ProtectedRoutes from "./utils/protectedRoutes";
 import PublicRoutes from "./utils/PublicRoutes";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           </Route>
           <Route path="/" element={<Home />} />
         </Routes>
+        <Toaster position="top-right" />
         <Footer />
       </AuthProvider>
     </BrowserRouter>

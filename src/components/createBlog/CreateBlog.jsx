@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./CreateBlog.scss";
 import { createBlog } from "../../API/blogs";
 import { inputValueIsValid } from "../../utils/inputValueIsValid";
+import toast from 'react-hot-toast';
 
 export default function CreateBlog() {
   const [newTitle, setNewTitle] = useState("");
@@ -11,7 +12,7 @@ export default function CreateBlog() {
   const submitBlog = async (e) => {
     e.preventDefault();
 
-    if (!inputValueIsValid(newTitle) && !inputValueIsValid(newContent)) {
+    if (!inputValueIsValid(newTitle) || !inputValueIsValid(newContent)) {
       setErrorMsg(true);
       return;
     }
@@ -22,6 +23,7 @@ export default function CreateBlog() {
     setErrorMsg(false);
     setNewTitle("");
     setNewContent("");
+    toast.success('Blog has been successfully published!')
   };
 
   return (

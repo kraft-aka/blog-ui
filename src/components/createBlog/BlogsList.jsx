@@ -5,6 +5,7 @@ import BlogPublishedCard from "./BlogPublishedCard";
 import { deleteBlog } from "../../API/blogs";
 import { useAuth } from "../../providers/authProvider";
 import Pagination from "../pagination/Pagination";
+import { toast } from "react-hot-toast";
 
 export default function BlogsList({ handleEdit, setShowEdit }) {
   const [blogsPaginated, setBlogsPaginated] = useState([]);
@@ -31,11 +32,12 @@ export default function BlogsList({ handleEdit, setShowEdit }) {
       .then((response) => {
         if (response) {
           setBlogsPaginated(blogsPaginated.filter((b) => b._id != blogId));
+          toast.success('Blog has been removed!')
         } else {
-          alert("Can not remove this blog");
+          toast.error("Can not remove this blog");
         }
       })
-      .catch((err) => alert("Can not remove this blog"));
+      .catch((err) => toast.error("Can not remove this blog"));
   }
 
   const userBlogs = blogsPaginated.map((userBlog) => {

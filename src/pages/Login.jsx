@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../providers/authProvider";
 import { useNavigate } from "react-router-dom";
 import "./Login.scss";
+import { toast } from "react-hot-toast";
 
 export default function Login() {
   const { SetToken, SetLoggedUser } = useAuth();
@@ -50,9 +51,10 @@ export default function Login() {
           setIsLoading(false);
           setEmail("");
           setPassword("");
+          toast.success('Successfully logged in!');
           navigate('/user')
         })
-        .catch((error) => alert("No such user."));
+        .catch((error) => toast.error("No such user."));
       setIsLoading(true);
     }
     setIsLoading(false);
