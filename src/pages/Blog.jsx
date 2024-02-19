@@ -105,7 +105,7 @@ export default function Blog() {
               </div>
             </div>
           </section>
-          {showComment && <Comment closeComment={closeComment} />}
+          {showComment && <Comment closeComment={closeComment} blogId={singleBlog._id}/>}
         </main>
       ) : (
         <h1>Loading...</h1>

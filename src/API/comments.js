@@ -3,10 +3,19 @@ import axiosInstance from './axiosInstance';
 async function getComments() {
   try {
     const res = await axiosInstance.get('comments');
-    return res.data.comments;
+    return res.data;
   } catch (err) {
     return false
   }
 }
 
-export { getComments };
+async function addComment(blogId, newComment) {
+  try {
+    const res = await axiosInstance.post(`blogs/comment/${blogId}`, newComment);
+    return res.data;
+  } catch (err) {
+    return false
+  }
+}
+
+export { getComments, addComment };

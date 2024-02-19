@@ -1,10 +1,13 @@
 import { useState } from "react";
 import CommentsList from '../components/comments/CommentsList'
 import "./Comment.scss";
-import {inputValueIsValid} from "../utils/inputValueIsValid";
+import { inputValueIsValid } from "../utils/inputValueIsValid";
+import { addComment } from '../API/comments'
+import { toast } from 'react-hot-toast'
 
-function Comment({ closeComment }) {
+function Comment({ closeComment, blogId }) {
   const [inputValue, setInputValue] = useState("");
+  const [errorMsg, setErrorMsg] = useState(false);
 
   function inputValueChangeHandler(e) {
     setInputValue(e.target.value);
@@ -14,13 +17,21 @@ function Comment({ closeComment }) {
     setInputValue("");
   }
 
+  const newComment = {
+    commentText: inputValue
+  }
 
   function submitCommentForm(e) {
     e.preventDefault();
-    if (inputValue == inputValueIsValid(inputValue)) {
+    if (!inputValueIsValid(inputValue)) {
+      setErrorMsg(true)
       return;
     } else {
-      alert('submitted')
+      addComment(blogId, newComment).then(response => {
+      })
+      setErrorMsg(false)
+      inputValueClearHandler()
+      toast.success('Comment submitted successfully!')
     }
   }
 
@@ -43,6 +54,7 @@ function Comment({ closeComment }) {
           <img src={srcImg} alt="user icon" className="comment-user-icon" />
           <p className="user-name-comment">Some name jfksdkjf</p>
         </section>
+        {errorMsg && <p className="comment-error-msg">Comment must not be empty</p>}
         <textarea
           className="comment-text"
           onChange={inputValueChangeHandler}

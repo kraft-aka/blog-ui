@@ -29,6 +29,11 @@ $textWhiteColor: #fff;
     height: 50%;
     padding: 1rem;
 
+    .comment-error-msg {
+      color: red;
+      margin-bottom: .3rem;
+    }
+
     .icon-name-container {
       display: flex;
       justify-content: space-between;
