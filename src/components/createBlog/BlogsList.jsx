@@ -11,20 +11,19 @@ export default function BlogsList({ handleEdit, setShowEdit }) {
   const [blogsPaginated, setBlogsPaginated] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentBlogsLimit, setCurrentBlogsLimit] = useState(3);
-  const [blogsNumber, setBlogsNumber] = useState(null)
+  const [pagesCount, setPagesCount] = useState(null)
   const { loggedUser } = useAuth();
 
   useEffect(() => {
     getPaginatedBlogs(loggedUser.id, currentPage, currentBlogsLimit).then(
-      (userBlogs) => setBlogsPaginated(userBlogs.results)
+      (userBlogs) => {
+        setBlogsPaginated(userBlogs.blogs)
+        setPagesCount(userBlogs.results.pages)
+      }
     );
   }, [loggedUser.id, currentPage]);
 
-  useEffect(() => {
-    getPaginatedBlogs(loggedUser.id, currentPage, currentBlogsLimit).then(
-      (userBlogs) => setBlogsNumber(userBlogs.blogsCount)
-    );
-  }, [loggedUser.id, currentPage]);
+  console.log(blogsPaginated)
 
 
   function handleDeleteBlog(blogId) {
@@ -62,7 +61,7 @@ export default function BlogsList({ handleEdit, setShowEdit }) {
         <Pagination
           currentPage={currentPage}
           currentBlogsLimit={currentBlogsLimit}
-          blogsNumber={blogsNumber}
+          pagesCount={pagesCount}
           onPageChange={(page) => setCurrentPage(page)}
         />
       </section>
@@ -75,7 +74,7 @@ export default function BlogsList({ handleEdit, setShowEdit }) {
         </div>
         <div className="blogs-list-info-total-blogs">
           <p>
-            Total Blogs: <span> {blogsNumber} </span>
+            Total Pages: <span> {pagesCount} </span>
           </p>
         </div>
         <div className="blogs-list-info-total-comments">

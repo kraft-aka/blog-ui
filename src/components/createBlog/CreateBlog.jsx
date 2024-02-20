@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import "./CreateBlog.scss";
-import { createBlog } from "../../API/blogs";
+import { createBlog, addImage } from "../../API/blogs";
 import { inputValueIsValid } from "../../utils/inputValueIsValid";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 
 export default function CreateBlog() {
   const [newTitle, setNewTitle] = useState("");
   const [newContent, setNewContent] = useState("");
   const [errorMsg, setErrorMsg] = useState(false);
+  const [image, setImage] = useState(null);
+
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
 
   const submitBlog = async (e) => {
     e.preventDefault();
@@ -16,14 +21,22 @@ export default function CreateBlog() {
       setErrorMsg(true);
       return;
     }
-    await createBlog({
+    const blog = await createBlog({
       title: newTitle,
       blogContent: newContent,
     });
-    setErrorMsg(false);
-    setNewTitle("");
-    setNewContent("");
-    toast.success('Blog has been successfully published!')
+    if (blog) {
+      setErrorMsg(false);
+      setNewTitle("");
+      setNewContent("");
+      toast.success("Blog has been successfully published!");
+      const blogId = blog.createdBlog._id;
+      const formData = new FormData();
+      formData.append("uploadFile", image);
+      addImage(blogId, formData);
+    } else {
+      toast.error("Error occured!");
+    }
   };
 
   return (
@@ -51,7 +64,13 @@ export default function CreateBlog() {
         />
         <br />
         <label htmlFor="image">Image</label>
-        <input type="file" id="image" name="image" className="create-blg-img" />
+        <input
+          type="file"
+          id="image"
+          name="image"
+          className="create-blg-img"
+          onChange={handleImageChange}
+        />
         <br />
         <section className="create-blog-cta">
           <input type="reset" className="create-blog-btn cancel" />

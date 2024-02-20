@@ -62,16 +62,16 @@ async function getPaginatedBlogs(userId, page, limit) {
     const res = await axiosInstance.get(
       `blogs/?user=${userId}&page=${page}&limit=${limit}`
     );
-    return res.data.results;
+    return res.data;
   } catch (err) {
     return false;
   }
 }
 
-async function addImage(blogId) {
+async function addImage(blogId, blogImage) {
   try {
-    const res = await axiosInstance.post(`blogs/addImage/${blogId}`);
-    return res.blog.blogImage;
+    const res = await axiosInstance.post(`blogs/addImage/${blogId}`, blogImage);
+    return res.data.msg
   } catch (err) {
     return false;
   }

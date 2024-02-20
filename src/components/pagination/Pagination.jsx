@@ -6,11 +6,10 @@ import './Pagination.scss'
 export default function Pagination({
   currentPage,
   currentBlogsLimit,
-  blogsNumber,
+  pagesCount,
   onPageChange,
 }) {
   //create pages count
-  const pagesCount = Math.ceil(blogsNumber / currentBlogsLimit);
   const pages = Range(1, pagesCount);
 
   const paginationArray = pages.map((page) => {
