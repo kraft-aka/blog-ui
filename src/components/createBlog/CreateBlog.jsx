@@ -3,12 +3,16 @@ import "./CreateBlog.scss";
 import { createBlog, addImage } from "../../API/blogs";
 import { inputValueIsValid } from "../../utils/inputValueIsValid";
 import toast from "react-hot-toast";
+import { useBlog } from "../../providers/blogProvider";
 
 export default function CreateBlog() {
   const [newTitle, setNewTitle] = useState("");
   const [newContent, setNewContent] = useState("");
   const [errorMsg, setErrorMsg] = useState(false);
   const [image, setImage] = useState(null);
+  const { blogs, addNewBlog } = useBlog();
+
+  console.log(blogs)
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -29,11 +33,12 @@ export default function CreateBlog() {
       setErrorMsg(false);
       setNewTitle("");
       setNewContent("");
-      toast.success("Blog has been successfully published!");
       const blogId = blog.createdBlog._id;
       const formData = new FormData();
       formData.append("uploadFile", image);
       addImage(blogId, formData);
+      addNewBlog(blog)
+      toast.success("Blog has been successfully published!");
     } else {
       toast.error("Error occured!");
     }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import BlogCard from "./BlogCard";
 import "./BlogRoll.scss";
 import { getAllBlogs } from "../../API/blogs";
+import { useBlog } from "../../providers/blogProvider";
 
 
 export default function BlogRoll() {
