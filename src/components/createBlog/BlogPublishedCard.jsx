@@ -1,11 +1,10 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import formatDate from "../../utils/formatDate";
 import "./BlogPublishedCard.scss";
-import EditBlog from './EditBlog';
+import EditBlog from "./EditBlog";
+import { Link } from "react-router-dom";
 
-export default function BlogPublishedCard({handleDeleteBlog,
-  blogs
-}) {
+export default function BlogPublishedCard({ handleDeleteBlog, blogs }) {
   const { _id, title, createdAt } = blogs;
   const [showEdit, setshowEdit] = useState(false);
 
@@ -19,9 +18,11 @@ export default function BlogPublishedCard({handleDeleteBlog,
   return (
     <>
       <section key={_id} className="blog-user-container">
-        <h3>
-          {title} / <span>{formatDate(createdAt)}</span>{" "}
-        </h3>
+        <Link to={`/blog/${_id}`}>
+          <h3>
+            {title} / <span>{formatDate(createdAt)}</span>{" "}
+          </h3>
+        </Link>
         <div className="blog-user-cta">
           <button className="blog-user-btn" onClick={handleEdit}>
             Edit
@@ -34,7 +35,7 @@ export default function BlogPublishedCard({handleDeleteBlog,
           </button>
         </div>
       </section>
-      {showEdit && <EditBlog handleEditClose={handleEditClose} blogs={blogs}/>}
+      {showEdit && <EditBlog handleEditClose={handleEditClose} blogs={blogs} />}
     </>
   );
 }

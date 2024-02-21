@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Comment from "./Comment";
 import { getBlog } from "../API/blogs";
 import { basePath } from "../API/axiosInstance";
@@ -13,6 +13,7 @@ export default function Blog() {
   const [singleBlog, setSingleBlog] = useState(null);
   const [showComment, setShowComment] = useState(false);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   function addComment() {
     setShowComment(true);
@@ -24,27 +25,22 @@ export default function Blog() {
 
   useEffect(() => {
     getBlog(id).then((sb) => {
-      setSingleBlog(sb)});
-
+      setSingleBlog(sb);
+    });
   }, [id]);
 
   let srcImg =
     "https://images.unsplash.com/photo-1682685797741-f0213d24418c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D";
 
-    let srcIcon =
-    "https://images.unsplash.com/photo-1682685797741-f0213d24418c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D";  
-  if (singleBlog  && singleBlog.blog && singleBlog.blog.blogImage) {
-    srcImg = basePath + singleBlog.blog.blogImage.slice(1)
+  let srcIcon =
+    "https://images.unsplash.com/photo-1682685797741-f0213d24418c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D";
+  if (singleBlog && singleBlog.blog && singleBlog.blog.blogImage) {
+    srcImg = basePath + singleBlog.blog.blogImage.slice(1);
   }
 
   if (singleBlog && singleBlog.blog && singleBlog.blog.createdBy.userIcon) {
-    srcIcon = basePath + singleBlog.blog.createdBy.userIcon.slice(1)
+    srcIcon = basePath + singleBlog.blog.createdBy.userIcon.slice(1);
   }
-
-
-
-
-
 
   return (
     <>
@@ -55,18 +51,12 @@ export default function Blog() {
               <h1 className="blog-title">{singleBlog.title}</h1>
               <img src={srcIcon} alt="user-icon" className="blog-user-icon" />
               <span>{singleBlog.createdBy.userName}</span>
-              <p className="blog-date">
-                {formatDate(singleBlog.createdAt)}
-              </p>
+              <p className="blog-date">{formatDate(singleBlog.createdAt)}</p>
               <div className="blog-like-comment-container">
-                <p className="blog-like-comment">
-                  {singleBlog.likes.length}
-                </p>
+                <p className="blog-like-comment">{singleBlog.likes.length}</p>
                 <img src={comment} alt="comment icon" className="blog-icon" />
                 <p className="blog-like-comment">|</p>
-                <p className="blog-like-comment">
-                  {singleBlog.likes.length}
-                </p>
+                <p className="blog-like-comment">{singleBlog.likes.length}</p>
                 <img src={like} alt="thumb up" className="blog-icon" />
               </div>
             </header>
@@ -96,16 +86,17 @@ export default function Blog() {
                 <p className="blog-author">
                   Written by {singleBlog.createdBy.userName}
                 </p>
-                <div className="blog-arrow">
-                  <Link to="/">
-                    <img src={arrowLeft} alt="arrow back" />
-                  </Link>
+                <div className="blog-arrow" onClick={() => navigate(-1)}>
+                  <img src={arrowLeft} alt="arrow back" />
+
                   <span className="blog-arrow-text">Back</span>
                 </div>
               </div>
             </div>
           </section>
-          {showComment && <Comment closeComment={closeComment} blogId={singleBlog._id}/>}
+          {showComment && (
+            <Comment closeComment={closeComment} blogId={singleBlog._id} />
+          )}
         </main>
       ) : (
         <h1>Loading...</h1>
