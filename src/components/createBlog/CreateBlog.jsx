@@ -10,8 +10,7 @@ export default function CreateBlog() {
   const [newContent, setNewContent] = useState("");
   const [errorMsg, setErrorMsg] = useState(false);
   const [image, setImage] = useState(null);
-  const { blogs, addNewBlog } = useBlog();
-
+  const { addNewBlog } = useBlog();
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -24,10 +23,13 @@ export default function CreateBlog() {
       setErrorMsg(true);
       return;
     }
-    const blog = await createBlog({
+
+    const newBlog = {
       title: newTitle,
       blogContent: newContent,
-    });
+    };
+
+    const blog = await createBlog(newBlog);
     if (blog) {
       setErrorMsg(false);
       setNewTitle("");
@@ -35,8 +37,10 @@ export default function CreateBlog() {
       const blogId = blog.createdBlog._id;
       const formData = new FormData();
       formData.append("uploadFile", image);
-      addImage(blogId, formData);
-      addNewBlog(blog)
+      await addImage(blogId, formData);
+      {
+        /*addNewBlog(blog)*/
+      }
       toast.success("Blog has been successfully published!");
     } else {
       toast.error("Error occured!");
@@ -72,7 +76,7 @@ export default function CreateBlog() {
           type="file"
           id="image"
           name="image"
-          className="create-blg-img"
+          className="create-blog-img"
           onChange={handleImageChange}
         />
         <br />

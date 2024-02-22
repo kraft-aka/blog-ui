@@ -15,7 +15,9 @@ const BlogProvider = ({ children }) => {
 
   // adds new blog
   const addNewBlog = (newBlog) => {
-    setBlogs([newBlog, ...blogs]);
+    setUserBlogs((prevBlogs)=> {
+      [newBlog, ...prevBlogs]
+    });
   };
 
   // all blogs from DB
