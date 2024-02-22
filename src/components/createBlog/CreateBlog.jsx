@@ -12,7 +12,6 @@ export default function CreateBlog() {
   const [image, setImage] = useState(null);
   const { blogs, addNewBlog } = useBlog();
 
-  console.log(blogs)
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);

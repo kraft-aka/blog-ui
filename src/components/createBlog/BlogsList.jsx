@@ -1,37 +1,27 @@
 import React, { useState, useEffect } from "react";
 import "./BlogsList.scss";
-import { getPaginatedBlogs } from "../../API/blogs";
-import BlogPublishedCard from "./BlogPublishedCard";
 import { deleteBlog } from "../../API/blogs";
-import { useAuth } from "../../providers/authProvider";
+import BlogPublishedCard from "./BlogPublishedCard";
 import Pagination from "../pagination/Pagination";
 import { toast } from "react-hot-toast";
+import { useBlog } from "../../providers/blogProvider";
 
 export default function BlogsList({ handleEdit, setShowEdit }) {
-  const [blogsPaginated, setBlogsPaginated] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [currentBlogsLimit, setCurrentBlogsLimit] = useState(3);
-  const [pagesCount, setPagesCount] = useState(null)
-  const { loggedUser } = useAuth();
-
-  useEffect(() => {
-    getPaginatedBlogs(loggedUser.id, currentPage, currentBlogsLimit).then(
-      (userBlogs) => {
-        setBlogsPaginated(userBlogs.blogs)
-        setPagesCount(userBlogs.results.pages)
-      }
-    );
-  }, [loggedUser.id, currentPage]);
-
-  console.log(blogsPaginated)
-
+  const {
+    userBlogs,
+    pagesCount,
+    setUserBlogs,
+    currentPage,
+    currentBlogsLimit,
+    setCurrentPage,
+  } = useBlog();
 
   function handleDeleteBlog(blogId) {
     deleteBlog(blogId)
       .then((response) => {
         if (response) {
-          setBlogsPaginated(blogsPaginated.filter((b) => b._id != blogId));
-          toast.success('Blog has been removed!')
+          setUserBlogs(userBlogs.filter((b) => b._id != blogId));
+          toast.success("Blog has been removed!");
         } else {
           toast.error("Can not remove this blog");
         }
@@ -39,7 +29,7 @@ export default function BlogsList({ handleEdit, setShowEdit }) {
       .catch((err) => toast.error("Can not remove this blog"));
   }
 
-  const userBlogs = blogsPaginated.map((userBlog) => {
+  const userBlogsList = userBlogs.map((userBlog) => {
     return (
       <BlogPublishedCard
         key={userBlog._id}
@@ -57,7 +47,7 @@ export default function BlogsList({ handleEdit, setShowEdit }) {
         <h3>Published Blogs</h3>
       </header>
       <section className="blogs-list-items">
-        <>{userBlogs}</>
+        <>{userBlogsList}</>
         <Pagination
           currentPage={currentPage}
           currentBlogsLimit={currentBlogsLimit}

@@ -1,16 +1,19 @@
-import React, {
-  createContext,
-  useContext,
-  useMemo,
-  useEffect,
-  useState,
-} from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
+
+import { getAllBlogs, getPaginatedBlogs } from "../API/blogs";
+import { useAuth } from "./authProvider";
 const BlogContext = createContext();
-import { getAllBlogs } from "../API/blogs";
 
 const BlogProvider = ({ children }) => {
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState([]); // all blogs
+  const [userBlogs, setUserBlogs] = useState([]); //user's blogs
+  const [pagesCount, setPagesCount] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentBlogsLimit, setCurrentBlogsLimit] = useState(3);
 
+  const { loggedUser } = useAuth();
+
+  // adds new blog
   const addNewBlog = (newBlog) => {
     setBlogs([newBlog, ...blogs]);
   };
@@ -20,15 +23,31 @@ const BlogProvider = ({ children }) => {
     getAllBlogs().then((loadedBlogs) => setBlogs(loadedBlogs));
   }, []);
 
-  console.log(blogs)
-
-  const contextValue = () => ({
-    blogs,
-    addNewBlog,
-  });
+  // all user blogs
+  useEffect(() => {
+    getPaginatedBlogs(loggedUser.id, currentPage, currentBlogsLimit).then(
+      (uBlogs) => {
+        setUserBlogs(uBlogs.blogs);
+        setPagesCount(uBlogs.results.pages);
+      }
+    );
+  }, [loggedUser.id, currentPage]);
 
   return (
-    <BlogContext.Provider value={contextValue}>{children}</BlogContext.Provider>
+    <BlogContext.Provider
+      value={{
+        blogs,
+        addNewBlog,
+        userBlogs,
+        pagesCount,
+        setUserBlogs,
+        currentPage,
+        currentBlogsLimit,
+        setCurrentPage,
+      }}
+    >
+      {children}
+    </BlogContext.Provider>
   );
 };
 
