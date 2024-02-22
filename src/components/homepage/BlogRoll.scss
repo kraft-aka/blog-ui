@@ -1,24 +1,25 @@
-
-
 .blog-roll-container {
   display: flex;
   flex-direction: column;
 
-  .blog-roll-header{
+  .blog-roll-header {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    margin:0 5rem;
+    margin: 0 5rem;
     margin-top: 1rem;
   }
   .blog-roll-length {
     font-size: 1.5rem;
     font-weight: 700;
   }
+  .blog-roll-pagination {
+    margin: 0 auto;
+  }
 }
 
-@media screen and ( min-width: 360px ) and (max-width: 430px){
+@media screen and (min-width: 360px) and (max-width: 430px) {
   .blog-roll-container {
     width: 100%;
     margin: 0 auto;
@@ -29,9 +30,9 @@
     display: flex;
     justify-content: space-between !important;
   }
-  
+
   .blog-roll-title {
-    font-size: 1.1rem;  
+    font-size: 1.1rem;
   }
 
   .blog-roll-length {

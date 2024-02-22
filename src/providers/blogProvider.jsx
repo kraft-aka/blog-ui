@@ -22,8 +22,8 @@ const BlogProvider = ({ children }) => {
 
   // all blogs from DB
   useEffect(() => {
-    getAllBlogs().then((loadedBlogs) => setBlogs(loadedBlogs));
-  }, []);
+    getAllBlogs(currentPage, currentBlogsLimit).then((loadedBlogs) => setBlogs(loadedBlogs));
+  }, [ currentPage, currentBlogsLimit]);
 
   // all user blogs
   useEffect(() => {

@@ -2,9 +2,11 @@ import React from "react";
 import BlogCard from "./BlogCard";
 import "./BlogRoll.scss";
 import { useBlog } from "../../providers/blogProvider";
+import Pagination from "../pagination/Pagination";
 
 export default function BlogRoll() {
-  const {blogs} = useBlog();
+  const { blogs, currentPage, currentBlogsLimit, pagesCount, setCurrentPage } =
+    useBlog();
 
   return (
     <>
@@ -17,6 +19,14 @@ export default function BlogRoll() {
           {blogs.map((blog) => (
             <BlogCard blog={blog} key={blog._id} />
           ))}
+          <section className="blog-roll-pagination">
+            <Pagination
+              currentPage={currentPage}
+              currentBlogsLimit={currentBlogsLimit}
+              pagesCount={pagesCount}
+              onPageChange={(page) => setCurrentPage(page)}
+            />
+          </section>
         </div>
       ) : (
         <h1>Loading...</h1>

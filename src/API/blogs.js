@@ -1,8 +1,8 @@
 import axiosInstance from "./axiosInstance";
 
-async function getAllBlogs() {
+async function getAllBlogs(page, limit) {
   try {
-    const res = await axiosInstance.get("blogs/");
+    const res = await axiosInstance.get(`blogs/?page=${page}&limit=${limit}`);
     return res.data.blogs;
   } catch (err) {
     return false;
