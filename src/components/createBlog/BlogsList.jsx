@@ -4,6 +4,7 @@ import { getPaginatedBlogs } from "../../API/blogs";
 import BlogPublishedCard from "./BlogPublishedCard";
 import { deleteBlog } from "../../API/blogs";
 import { useAuth } from "../../providers/authProvider";
+import { useBlog } from "../../providers/blogProvider";
 import Pagination from "../pagination/Pagination";
 import { toast } from "react-hot-toast";
 
@@ -13,17 +14,18 @@ export default function BlogsList({ handleEdit, setShowEdit }) {
   const [currentBlogsLimit, setCurrentBlogsLimit] = useState(3);
   const [pagesCount, setPagesCount] = useState(null)
   const { loggedUser } = useAuth();
+  const { SetBlogs } = useBlog();
 
   useEffect(() => {
     getPaginatedBlogs(loggedUser.id, currentPage, currentBlogsLimit).then(
       (userBlogs) => {
         setBlogsPaginated(userBlogs.blogs)
         setPagesCount(userBlogs.results.pages)
+        SetBlogs(userBlogs.blogs)
       }
     );
   }, [loggedUser.id, currentPage]);
 
-  console.log(blogsPaginated)
 
 
   function handleDeleteBlog(blogId) {

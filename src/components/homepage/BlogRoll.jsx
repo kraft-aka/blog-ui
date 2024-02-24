@@ -5,18 +5,18 @@ import { getAllBlogs } from "../../API/blogs";
 import { useBlog } from "../../providers/blogProvider";
 import Pagination from "../pagination/Pagination";
 
-
 export default function BlogRoll() {
-  
   const [blogs, setBlogs] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentBlogsLimit, setCurrentBlogsLimit] = useState(3);
+  const [pagesCount, setPagesCount] = useState(null);
 
-  const sortedBlogs = blogs.sort(
-    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-  );
-
+  // all blogs from DB
   useEffect(() => {
-    getAllBlogs().then((fetchedBlogs) => setBlogs(fetchedBlogs));
-  }, []);
+    getAllBlogs(currentPage, currentBlogsLimit).then((loadedBlogs) => {
+      setBlogs(loadedBlogs);
+    });
+  }, [currentPage, currentBlogsLimit]);
 
   return (
     <>
@@ -26,7 +26,7 @@ export default function BlogRoll() {
             <h2 className="blog-roll-title">Latest Posts</h2>
             <p className="blog-roll-length">{blogs.length} Blogs</p>
           </header>
-          {sortedBlogs.map((blog) => (
+          {blogs.map((blog) => (
             <BlogCard blog={blog} key={blog._id} />
           ))}
           <section className="blog-roll-pagination">

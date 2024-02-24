@@ -1,36 +1,19 @@
-import React, {
-  createContext,
-  useContext,
-  useMemo,
-  useEffect,
-  useState,
-} from "react";
+import React, { createContext, useContext, useState } from "react";
 const BlogContext = createContext();
-import { getAllBlogs } from "../API/blogs";
 
 const BlogProvider = ({ children }) => {
-  const [blogs, setBlogs] = useState([]);
+  const [fetchedBlogs, setFetchedBlogs] = useState([]);
+
+  const SetBlogs = (newBlogs) => setFetchedBlogs(newBlogs)
 
   const addNewBlog = (newBlog) => {
-    setUserBlogs((prevBlogs)=> {
-      [newBlog, ...prevBlogs]
+    setFetchedBlogs((prevBlogs) => {
+      [newBlog, ...prevBlogs];
     });
   };
 
-  // all blogs from DB
-  useEffect(() => {
-    getAllBlogs(currentPage, currentBlogsLimit).then((loadedBlogs) => setBlogs(loadedBlogs));
-  }, [ currentPage, currentBlogsLimit]);
-
-  console.log(blogs)
-
-  const contextValue = () => ({
-    blogs,
-    addNewBlog,
-  });
-
   return (
-    <BlogContext.Provider value={contextValue}>{children}</BlogContext.Provider>
+    <BlogContext.Provider value={{addNewBlog,SetBlogs,fetchedBlogs}}>{children}</BlogContext.Provider>
   );
 };
 
