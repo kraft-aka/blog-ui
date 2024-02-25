@@ -11,10 +11,13 @@ export default function BlogRoll() {
   const [currentBlogsLimit, setCurrentBlogsLimit] = useState(3);
   const [pagesCount, setPagesCount] = useState(null);
 
+  const { SetBlogs } = useBlog();
+
   // all blogs from DB
   useEffect(() => {
     getAllBlogs(currentPage, currentBlogsLimit).then((loadedBlogs) => {
       setBlogs(loadedBlogs);
+      SetBlogs(loadedBlogs);
     });
   }, [currentPage, currentBlogsLimit]);
 
