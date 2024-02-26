@@ -23,13 +23,15 @@ export default function CommentsList() {
       <header className="comments-list-header">
         <h1>Last comments</h1>
       </header>
+      <article className="comment-list-items">
       { commentsFetched.map((comment) => 
-       ( 
-        <CommentCard
+        ( 
+          <CommentCard
           key={comment._id}
           comment={comment}
-        />
-      ))}
+          />
+          ))}
+          </article>
     </section>
   );
 }

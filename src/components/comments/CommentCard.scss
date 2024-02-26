@@ -43,6 +43,8 @@ $textWhiteColor: #fff;
     width: inherit;
     height: auto;
     margin: 1rem 0;
+    flex: 1;
+    align-self: flex-start;
   }
   .comment-card-cta {
     width: 100%;

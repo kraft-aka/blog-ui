@@ -1,13 +1,16 @@
 import { useState } from "react";
-import CommentsList from './CommentsList'
+import CommentsList from "./CommentsList";
 import "./Comment.scss";
 import { inputValueIsValid } from "../../utils/inputValueIsValid";
-import { addComment } from '../../API/comments'
-import { toast } from 'react-hot-toast'
+import { addComment } from "../../API/comments";
+import { toast } from "react-hot-toast";
+import { useAuth } from "../../providers/authProvider";
 
 function Comment({ closeComment, blogId }) {
   const [inputValue, setInputValue] = useState("");
   const [errorMsg, setErrorMsg] = useState(false);
+  const { loggedUser } = useAuth();
+  const userName = loggedUser ? loggedUser.userName : 'user'
 
   function inputValueChangeHandler(e) {
     setInputValue(e.target.value);
@@ -18,20 +21,19 @@ function Comment({ closeComment, blogId }) {
   }
 
   const newComment = {
-    commentText: inputValue
-  }
+    commentText: inputValue,
+  };
 
   function submitCommentForm(e) {
     e.preventDefault();
     if (!inputValueIsValid(inputValue)) {
-      setErrorMsg(true)
+      setErrorMsg(true);
       return;
     } else {
-      addComment(blogId, newComment).then(response => {
-      })
-      setErrorMsg(false)
-      inputValueClearHandler()
-      toast.success('Comment submitted successfully!')
+      addComment(blogId, newComment).then((response) => { });
+      setErrorMsg(false);
+      inputValueClearHandler();
+      toast.success("Comment submitted successfully!");
     }
   }
 
@@ -52,9 +54,11 @@ function Comment({ closeComment, blogId }) {
       <form className="comment-form" onSubmit={submitCommentForm}>
         <section className="icon-name-container">
           <img src={srcImg} alt="user icon" className="comment-user-icon" />
-          <p className="user-name-comment">Some name jfksdkjf</p>
+          <p className="user-name-comment">{userName}</p>
         </section>
-        {errorMsg && <p className="comment-error-msg">Comment must not be empty</p>}
+        {errorMsg && (
+          <p className="comment-error-msg">Comment must not be empty</p>
+        )}
         <textarea
           className="comment-text"
           onChange={inputValueChangeHandler}

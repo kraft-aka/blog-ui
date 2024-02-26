@@ -18,10 +18,12 @@ export default function Blog() {
 
   function addComment() {
     setShowComment(true);
+    localStorage.setItem('Comment', true)
   }
 
   function closeComment() {
     setShowComment(false);
+    localStorage.removeItem('Comment')
   }
 
   useEffect(() => {
