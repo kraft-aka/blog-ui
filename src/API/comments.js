@@ -1,8 +1,8 @@
 import axiosInstance from './axiosInstance';
 
-async function getComments() {
+async function getComments(blogId) {
   try {
-    const res = await axiosInstance.get('comments');
+    const res = await axiosInstance.get(`comments/${blogId}`);
     return res.data;
   } catch (err) {
     return false

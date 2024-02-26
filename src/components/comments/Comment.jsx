@@ -1,8 +1,8 @@
 import { useState } from "react";
-import CommentsList from '../components/comments/CommentsList'
+import CommentsList from './CommentsList'
 import "./Comment.scss";
-import { inputValueIsValid } from "../utils/inputValueIsValid";
-import { addComment } from '../API/comments'
+import { inputValueIsValid } from "../../utils/inputValueIsValid";
+import { addComment } from '../../API/comments'
 import { toast } from 'react-hot-toast'
 
 function Comment({ closeComment, blogId }) {

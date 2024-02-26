@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import Comment from "./Comment";
+import Comment from "../components/comments/Comment";
 import { getBlog } from "../API/blogs";
 import { basePath } from "../API/axiosInstance";
 import formatDate from "../utils/formatDate";
@@ -8,6 +8,7 @@ import "./Blog.scss";
 import arrowLeft from "../assets/arrow-left.svg";
 import comment from "../assets/comment.svg";
 import like from "../assets/like.svg";
+import userIcon from '../assets/user-icon.jpg'
 
 export default function Blog() {
   const [singleBlog, setSingleBlog] = useState(null);
@@ -32,14 +33,14 @@ export default function Blog() {
   let srcImg =
     "https://images.unsplash.com/photo-1682685797741-f0213d24418c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D";
 
-  let srcIcon =
-    "https://images.unsplash.com/photo-1682685797741-f0213d24418c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D";
-  if (singleBlog && singleBlog.blog && singleBlog.blog.blogImage) {
-    srcImg = basePath + singleBlog.blog.blogImage.slice(1);
+  let srcIcon = userIcon;
+
+  if (singleBlog && singleBlog.blogImage) {
+    srcImg = basePath + singleBlog.blogImage.slice(1);
   }
 
-  if (singleBlog && singleBlog.blog && singleBlog.blog.createdBy.userIcon) {
-    srcIcon = basePath + singleBlog.blog.createdBy.userIcon.slice(1);
+  if (singleBlog && singleBlog.createdBy.userIcon) {
+    srcIcon = basePath + singleBlog.createdBy.userIcon.slice(1);
   }
 
   return (
@@ -62,7 +63,7 @@ export default function Blog() {
             </header>
             <figure className="blog-figure">
               <img src={srcImg} alt="main image" className="blog-img" />
-              <figcaption>Photograph: {}</figcaption>
+              <figcaption>Photograph: { }</figcaption>
             </figure>
           </section>
           <section className="blog-content">

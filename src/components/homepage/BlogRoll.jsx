@@ -9,7 +9,7 @@ export default function BlogRoll() {
   const [blogs, setBlogs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentBlogsLimit, setCurrentBlogsLimit] = useState(3);
-  const [pagesCount, setPagesCount] = useState(null);
+  const [pagesCount, setPagesCount] = useState(10);
 
   const { SetBlogs } = useBlog();
 
