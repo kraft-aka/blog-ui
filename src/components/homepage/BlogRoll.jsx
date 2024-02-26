@@ -27,7 +27,6 @@ export default function BlogRoll() {
         <div className="blog-roll-container">
           <header className="blog-roll-header">
             <h2 className="blog-roll-title">Latest Posts</h2>
-            <p className="blog-roll-length">{blogs.length} Blogs</p>
           </header>
           {blogs.map((blog) => (
             <BlogCard blog={blog} key={blog._id} />
