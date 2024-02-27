@@ -6,7 +6,7 @@ import { addComment } from "../../API/comments";
 import { toast } from "react-hot-toast";
 import { useAuth } from "../../providers/authProvider";
 
-function Comment({ closeComment, blogId }) {
+function Comment({ closeComment, blogId, comments }) {
   const [inputValue, setInputValue] = useState("");
   const [errorMsg, setErrorMsg] = useState(false);
   const { loggedUser } = useAuth();
@@ -80,7 +80,7 @@ function Comment({ closeComment, blogId }) {
           </button>
         </section>
       </form>
-      <CommentsList />
+      <CommentsList comments={comments} />
     </aside>
   );
 }

@@ -1,31 +1,44 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Comment from "../components/comments/Comment";
 import { getBlog } from "../API/blogs";
 import { basePath } from "../API/axiosInstance";
+import { getComments } from "../API/comments";
 import formatDate from "../utils/formatDate";
 import "./Blog.scss";
 import arrowLeft from "../assets/arrow-left.svg";
 import comment from "../assets/comment.svg";
 import like from "../assets/like.svg";
-import userIcon from '../assets/user-icon.jpg'
+import userIcon from "../assets/user-icon.jpg";
 
 export default function Blog() {
   const [singleBlog, setSingleBlog] = useState(null);
   const [showComment, setShowComment] = useState(false);
+  const [commentsFetched, setCommentsFetched] = useState([]);
+  const [isLoading, setIsloading] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
 
   function addComment() {
     setShowComment(true);
-    localStorage.setItem('Comment', true)
+    localStorage.setItem("Comment", true);
   }
 
   function closeComment() {
     setShowComment(false);
-    localStorage.removeItem('Comment')
+    localStorage.removeItem("Comment");
   }
 
+  // fetches all comments for particular blog
+  useEffect(() => {
+    getComments(id).then((comments) => {
+      setIsloading(true);
+      setCommentsFetched(comments);
+      setIsloading(false);
+    });
+  }, []);
+
+  // fetches single blog
   useEffect(() => {
     getBlog(id).then((sb) => {
       setSingleBlog(sb);
@@ -56,7 +69,7 @@ export default function Blog() {
               <span>{singleBlog.createdBy.userName}</span>
               <p className="blog-date">{formatDate(singleBlog.createdAt)}</p>
               <div className="blog-like-comment-container">
-                <p className="blog-like-comment">{singleBlog.likes.length}</p>
+                <p className="blog-like-comment">{commentsFetched.length}</p>
                 <img src={comment} alt="comment icon" className="blog-icon" />
                 <p className="blog-like-comment">|</p>
                 <p className="blog-like-comment">{singleBlog.likes.length}</p>
@@ -65,7 +78,7 @@ export default function Blog() {
             </header>
             <figure className="blog-figure">
               <img src={srcImg} alt="main image" className="blog-img" />
-              <figcaption>Photograph: { }</figcaption>
+              <figcaption>Photograph: {}</figcaption>
             </figure>
           </section>
           <section className="blog-content">
@@ -98,7 +111,11 @@ export default function Blog() {
             </div>
           </section>
           {showComment && (
-            <Comment closeComment={closeComment} blogId={singleBlog._id} />
+            <Comment
+              closeComment={closeComment}
+              blogId={singleBlog._id}
+              comments={commentsFetched}
+            />
           )}
         </main>
       ) : (
