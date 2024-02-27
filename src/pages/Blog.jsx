@@ -60,9 +60,8 @@ export default function Blog() {
     });
   }, [id]);
 
-  const ownLike = singleBlog
-    ? singleBlog.likes.find((i) => i.user === loggedUser.id)
-    : [];
+  console.log(likes)
+  const ownLike = loggedUser ? likes.find((i) => i.user === loggedUser.id): [];
 
   let srcImg =
     "https://images.unsplash.com/photo-1682685797741-f0213d24418c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D";
@@ -97,7 +96,7 @@ export default function Blog() {
             </header>
             <figure className="blog-figure">
               <img src={srcImg} alt="main image" className="blog-img" />
-              <figcaption>Photograph: {}</figcaption>
+              <figcaption>Photograph: { }</figcaption>
             </figure>
           </section>
           <section className="blog-content">
