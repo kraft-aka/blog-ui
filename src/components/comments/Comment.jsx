@@ -10,7 +10,7 @@ function Comment({ closeComment, blogId, comments }) {
   const [inputValue, setInputValue] = useState("");
   const [errorMsg, setErrorMsg] = useState(false);
   const { loggedUser } = useAuth();
-  const userName = loggedUser ? loggedUser.userName : 'user'
+  const userName = loggedUser ? loggedUser.userName : "user";
 
   function inputValueChangeHandler(e) {
     setInputValue(e.target.value);
@@ -30,7 +30,7 @@ function Comment({ closeComment, blogId, comments }) {
       setErrorMsg(true);
       return;
     } else {
-      addComment(blogId, newComment).then((response) => { });
+      addComment(blogId, newComment).then((response) => {});
       setErrorMsg(false);
       inputValueClearHandler();
       toast.success("Comment submitted successfully!");
@@ -44,42 +44,44 @@ function Comment({ closeComment, blogId, comments }) {
     <aside className="comment-container">
       <header className="comment-header">
         <h2 className="comment-title">
-          Comments <span>()</span>
+          Comments <span>({comments.length})</span>
         </h2>
         <p className="comment-close-btn" onClick={closeComment}>
           X
         </p>
       </header>
 
-      <form className="comment-form" onSubmit={submitCommentForm}>
-        <section className="icon-name-container">
-          <img src={srcImg} alt="user icon" className="comment-user-icon" />
-          <p className="user-name-comment">{userName}</p>
-        </section>
-        {errorMsg && (
-          <p className="comment-error-msg">Comment must not be empty</p>
-        )}
-        <textarea
-          className="comment-text"
-          onChange={inputValueChangeHandler}
-          value={inputValue}
-          name="comment"
-          id="comment"
-          placeholder="Type here..."
-        />
-        <section className="comment-cta-btns">
-          <button
-            type="button"
-            className="comment-btn cancel"
-            onClick={inputValueClearHandler}
-          >
-            Cancel
-          </button>
-          <button type="submit" className="comment-btn">
-            Comment
-          </button>
-        </section>
-      </form>
+      {loggedUser && (
+        <form className="comment-form" onSubmit={submitCommentForm}>
+          <section className="icon-name-container">
+            <img src={srcImg} alt="user icon" className="comment-user-icon" />
+            <p className="user-name-comment">{userName}</p>
+          </section>
+          {errorMsg && (
+            <p className="comment-error-msg">Comment must not be empty</p>
+          )}
+          <textarea
+            className="comment-text"
+            onChange={inputValueChangeHandler}
+            value={inputValue}
+            name="comment"
+            id="comment"
+            placeholder="Type here..."
+          />
+          <section className="comment-cta-btns">
+            <button
+              type="button"
+              className="comment-btn cancel"
+              onClick={inputValueClearHandler}
+            >
+              Cancel
+            </button>
+            <button type="submit" className="comment-btn">
+              Comment
+            </button>
+          </section>
+        </form>
+      )}
       <CommentsList comments={comments} />
     </aside>
   );
