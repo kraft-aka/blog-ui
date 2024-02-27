@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Comment from "../components/comments/Comment";
-import { getBlog } from "../API/blogs";
+import { getBlog, addLike } from "../API/blogs";
 import { basePath } from "../API/axiosInstance";
 import { getComments } from "../API/comments";
+import { useAuth } from "../providers/authProvider";
 import formatDate from "../utils/formatDate";
 import "./Blog.scss";
 import arrowLeft from "../assets/arrow-left.svg";
 import comment from "../assets/comment.svg";
 import like from "../assets/like.svg";
 import userIcon from "../assets/user-icon.jpg";
+import toast from "react-hot-toast";
 
 export default function Blog() {
   const [singleBlog, setSingleBlog] = useState(null);
   const [showComment, setShowComment] = useState(false);
   const [commentsFetched, setCommentsFetched] = useState([]);
   const [isLoading, setIsloading] = useState(false);
+  const [likes, setLikes] = useState([]);
+  const { loggedUser } = useAuth();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -27,6 +31,24 @@ export default function Blog() {
   function closeComment() {
     setShowComment(false);
     localStorage.removeItem("Comment");
+  }
+
+  // async function addLikeHandler(id) {
+  //   try {
+  //     const newLike = await addLike(id);
+  //     setLikes(prevLikes=> [newLike, ...prevLikes]);
+  //     toast.success('Like added!')
+  //   } catch (error) { }
+  //   toast.error('Error occured!')
+  // }
+
+  function addLikeHandler(id) {
+    addLike(id)
+      .then((response) => {
+        setLikes((prevLikes) => [response, ...prevLikes]);
+        toast.success("Like added!");
+      })
+      .catch((error) => toast.error("Error occured!"));
   }
 
   // fetches all comments for particular blog
@@ -42,6 +64,7 @@ export default function Blog() {
   useEffect(() => {
     getBlog(id).then((sb) => {
       setSingleBlog(sb);
+      setLikes(sb.likes);
     });
   }, [id]);
 
@@ -91,12 +114,19 @@ export default function Blog() {
                     Add comment...
                   </span>
                 </div>
-                <div className="blog-sum-container-item-1">
-                  <span className="blog-add-like">
-                    {singleBlog.likes.length}
-                  </span>
-                  <img src={like} alt="" className="blog-icon" />
-                </div>
+                {loggedUser && (
+                  <div className="blog-sum-container-item-2">
+                    <span className="blog-add-like">
+                      {singleBlog.likes.length}
+                    </span>
+                    <img
+                      src={like}
+                      alt=""
+                      className="blog-icon"
+                      onClick={() => addLikeHandler(id)}
+                    />
+                  </div>
+                )}
               </div>
               <div className="blog-cta">
                 <p className="blog-author">

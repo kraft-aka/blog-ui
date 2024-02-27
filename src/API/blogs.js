@@ -77,6 +77,15 @@ async function addImage(blogId, blogImage) {
   }
 }
 
+async function addLike(blogId) {
+  try {
+    const res = await axiosInstance.put(`blogs/likes/${blogId}`);
+    return res.data.msg;
+  } catch (err) {
+    return false;
+  }
+}
+
 export {
   getAllBlogs,
   getBlog,
@@ -86,4 +95,5 @@ export {
   editBlog,
   getPaginatedBlogs,
   addImage,
+  addLike,
 };
