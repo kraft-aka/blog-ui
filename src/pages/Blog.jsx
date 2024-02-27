@@ -10,6 +10,7 @@ import "./Blog.scss";
 import arrowLeft from "../assets/arrow-left.svg";
 import comment from "../assets/comment.svg";
 import like from "../assets/like.svg";
+import liked from "../assets/liked.svg";
 import userIcon from "../assets/user-icon.jpg";
 import toast from "react-hot-toast";
 
@@ -32,15 +33,6 @@ export default function Blog() {
     setShowComment(false);
     localStorage.removeItem("Comment");
   }
-
-  // async function addLikeHandler(id) {
-  //   try {
-  //     const newLike = await addLike(id);
-  //     setLikes(prevLikes=> [newLike, ...prevLikes]);
-  //     toast.success('Like added!')
-  //   } catch (error) { }
-  //   toast.error('Error occured!')
-  // }
 
   function addLikeHandler(id) {
     addLike(id)
@@ -67,6 +59,10 @@ export default function Blog() {
       setLikes(sb.likes);
     });
   }, [id]);
+
+  const ownLike = singleBlog
+    ? singleBlog.likes.find((i) => i.user === loggedUser.id)
+    : [];
 
   let srcImg =
     "https://images.unsplash.com/photo-1682685797741-f0213d24418c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D";
@@ -119,12 +115,21 @@ export default function Blog() {
                     <span className="blog-add-like">
                       {singleBlog.likes.length}
                     </span>
-                    <img
-                      src={like}
-                      alt=""
-                      className="blog-icon"
-                      onClick={() => addLikeHandler(id)}
-                    />
+                    {ownLike ? (
+                      <img
+                        src={liked}
+                        alt="filled like icon"
+                        className="blog-icon"
+                        style={{ marginLeft: ".5rem" }}
+                      />
+                    ) : (
+                      <img
+                        src={like}
+                        alt=""
+                        className="blog-icon"
+                        onClick={() => addLikeHandler(id)}
+                      />
+                    )}
                   </div>
                 )}
               </div>
