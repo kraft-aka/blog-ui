@@ -1,6 +1,7 @@
 import React from "react";
 import like from "../../assets/like.svg";
 import commentIcon from "../../assets/comment.svg";
+import userIcon from '../../assets/user-icon.jpg'
 import "./CommentCard.scss";
 import formatDate from "../../utils/formatDate";
 import { deleteComment, addLikeToComment } from "../../API/comments";
@@ -16,8 +17,11 @@ export default function CommentCard({ comment, comments, setCommentsFetched }) {
     userId: { _id },
   } = comment;
   const { loggedUser } = useAuth();
-  let imgSrc =
-    "https://images.unsplash.com/photo-1705848533403-6a5427e6f466?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHx8";
+  let imgSrc = { userIcon }
+
+  if (loggedUser) {
+    imgSrc = loggedUser
+  }
 
   // deletes comment
   const deleteCommentHandler = async (e) => {

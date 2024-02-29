@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./UserCard.scss";
+import userIcon from "../../assets/user-icon.jpg";
 import { useAuth } from "../../providers/authProvider";
 import { inputValueIsValid } from "../../utils/inputValueIsValid";
 import { inputEmailIsValid } from "../../utils/inputValueIsValid";
@@ -27,8 +28,7 @@ export default function UserCard() {
     e.preventDefault();
   }
 
-  let imgSrc =
-    "https://images.unsplash.com/photo-1705848533403-6a5427e6f466?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHx8";
+  let imgSrc = userIcon;
 
   return (
     <main className="user-card-container">
