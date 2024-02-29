@@ -26,4 +26,13 @@ async function deleteComment(commentId) {
     return false
   }
 }
-export { getComments, addComment, deleteComment };
+
+async function addLikeToComment(commentId) {
+  try {
+    const res = await axiosInstance.put(`comments/addlike/${commentId}`);
+    return res.data.msg;
+  } catch (err) {
+    return false;
+  }
+}
+export { getComments, addComment, deleteComment, addLikeToComment };
