@@ -34,6 +34,10 @@ export default function Blog() {
     localStorage.removeItem("Comment");
   }
 
+  function addNewComment(newComment) {
+    setCommentsFetched(prevComments => [newComment, ...prevComments])
+  }
+
   function addLikeHandler(id) {
     addLike(id)
       .then((response) => {
@@ -60,8 +64,7 @@ export default function Blog() {
     });
   }, [id]);
 
-  console.log(likes)
-  const ownLike = loggedUser ? likes.find((i) => i.user === loggedUser.id): [];
+  const ownLike = loggedUser ? likes.find((i) => i.user === loggedUser.id) : [];
 
   let srcImg =
     "https://images.unsplash.com/photo-1682685797741-f0213d24418c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D";
@@ -149,6 +152,8 @@ export default function Blog() {
               closeComment={closeComment}
               blogId={singleBlog._id}
               comments={commentsFetched}
+              setCommentsFetched={setCommentsFetched}
+              addNewComment={addNewComment}
             />
           )}
         </main>

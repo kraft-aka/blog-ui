@@ -49,13 +49,30 @@ $textWhiteColor: #fff;
   .comment-card-cta {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     padding: 1rem 0;
+
+    .comment-card-btn {
+      padding: 0.5rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 2rem;
+      background-color: $btnColor;
+      color: $textWhiteColor;
+      cursor: pointer;
+      transition: all 0.4s ease-in-out;
+      margin-left: 7rem;
+    }
 
     .comment-card-cta-item-1 {
       display: flex;
       justify-content: space-around;
     }
   }
+}
+
+.comment-card-btn:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
 }

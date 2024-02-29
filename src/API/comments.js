@@ -18,4 +18,12 @@ async function addComment(blogId, newComment) {
   }
 }
 
-export { getComments, addComment };
+async function deleteComment(commentId) {
+  try {
+    const res = await axiosInstance.delete(`comments/deletecomment/${commentId}`);
+    return res.data.msg;
+  } catch (err) {
+    return false
+  }
+}
+export { getComments, addComment, deleteComment };

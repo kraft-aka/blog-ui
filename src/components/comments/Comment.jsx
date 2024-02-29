@@ -6,7 +6,7 @@ import { addComment } from "../../API/comments";
 import { toast } from "react-hot-toast";
 import { useAuth } from "../../providers/authProvider";
 
-function Comment({ closeComment, blogId, comments }) {
+function Comment({ closeComment, blogId, comments, setCommentsFetched, addNewComment }) {
   const [inputValue, setInputValue] = useState("");
   const [errorMsg, setErrorMsg] = useState(false);
   const { loggedUser } = useAuth();
@@ -30,9 +30,10 @@ function Comment({ closeComment, blogId, comments }) {
       setErrorMsg(true);
       return;
     } else {
-      addComment(blogId, newComment).then((response) => {});
+      addComment(blogId, newComment).then((response) => { });
       setErrorMsg(false);
       inputValueClearHandler();
+      // addNewComment(newComment)
       toast.success("Comment submitted successfully!");
     }
   }
@@ -82,7 +83,7 @@ function Comment({ closeComment, blogId, comments }) {
           </section>
         </form>
       )}
-      <CommentsList comments={comments} />
+      <CommentsList comments={comments} setCommentsFetched={setCommentsFetched} />
     </aside>
   );
 }

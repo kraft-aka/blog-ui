@@ -3,17 +3,36 @@ import like from "../../assets/like.svg";
 import commentIcon from "../../assets/comment.svg";
 import "./CommentCard.scss";
 import formatDate from "../../utils/formatDate";
+import { deleteComment } from "../../API/comments";
+import toast from "react-hot-toast";
+import { useAuth } from "../../providers/authProvider";
 
-export default function CommentCard({ comment }) {
+export default function CommentCard({ comment, comments, setCommentsFetched }) {
   const {
     createdAt,
     commentText,
     likes,
     userId: { userName },
+    userId: { _id },
   } = comment;
+  const { loggedUser } = useAuth();
   let imgSrc =
     "https://images.unsplash.com/photo-1705848533403-6a5427e6f466?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHx8";
 
+  const deleteCommentHandler = async (e) => {
+    e.preventDefault();
+    try {
+      if (loggedUser.id === _id) {
+        await deleteComment(comment._id);
+        setCommentsFetched(comments.filter((c) => c._id !== comment._id));
+        toast.success("Comment sucessfully deleted!");
+      } else {
+        toast.error("Can not delete comment!");
+      }
+    } catch (error) {
+      toast.error("Could not delete comment!");
+    }
+  };
   return (
     <section className="comment-card-container">
       <header className="comment-card-header">
@@ -32,6 +51,9 @@ export default function CommentCard({ comment }) {
           <img src={like} alt="thumb up" />
         </div>
         <img src={commentIcon} alt="comment cloud" />
+        {loggedUser && <button className="comment-card-btn" onClick={deleteCommentHandler}>
+          Delete
+        </button>}
       </div>
     </section>
   );
