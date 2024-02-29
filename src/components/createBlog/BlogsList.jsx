@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./BlogsList.scss";
-import { getPaginatedBlogs } from "../../API/blogs";
 import BlogPublishedCard from "./BlogPublishedCard";
-import { deleteBlog } from "../../API/blogs";
+import { deleteBlog, getPaginatedBlogs, getLikes } from "../../API/blogs";
 import { useAuth } from "../../providers/authProvider";
-import { useBlog } from "../../providers/blogProvider";
 import Pagination from "../pagination/Pagination";
 import { toast } from "react-hot-toast";
 
@@ -13,19 +11,22 @@ export default function BlogsList({ handleEdit, setShowEdit }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentBlogsLimit, setCurrentBlogsLimit] = useState(3);
   const [pagesCount, setPagesCount] = useState(null)
-  const { loggedUser } = useAuth();
-  const { SetBlogs } = useBlog();
+  const [blogLikes, setBlogLikes] = useState(null);
+  const { loggedUser} = useAuth();
 
   useEffect(() => {
     getPaginatedBlogs(loggedUser.id, currentPage, currentBlogsLimit).then(
       (userBlogs) => {
         setBlogsPaginated(userBlogs.blogs)
         setPagesCount(userBlogs.results.pages)
-        SetBlogs(userBlogs.blogs)
       }
     );
   }, [loggedUser.id, currentPage]);
 
+  // Likes for user's blogs
+  useEffect(() => {
+    getLikes().then(response => setBlogLikes(response.blogsLikes))
+  }, [])
 
 
   function handleDeleteBlog(blogId) {
@@ -71,7 +72,7 @@ export default function BlogsList({ handleEdit, setShowEdit }) {
         <h3>Infographics</h3>
         <div className="blogs-list-info-total-likes">
           <p>
-            Total Likes: <span>2</span>
+            Total Likes: <span>{blogLikes}</span>
           </p>
         </div>
         <div className="blogs-list-info-total-blogs">
@@ -81,7 +82,7 @@ export default function BlogsList({ handleEdit, setShowEdit }) {
         </div>
         <div className="blogs-list-info-total-comments">
           <p>
-            Total Comments: <span>5 </span>
+            Total Comments: <span></span>
           </p>
         </div>
       </section>

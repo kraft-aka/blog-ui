@@ -86,6 +86,15 @@ async function addLike(blogId) {
   }
 }
 
+async function getLikes() {
+  try {
+    const res = await axiosInstance.get('likes');
+    return res.data;
+  } catch (err) {
+    return false;
+  }
+}
+
 export {
   getAllBlogs,
   getBlog,
@@ -96,4 +105,5 @@ export {
   getPaginatedBlogs,
   addImage,
   addLike,
+  getLikes,
 };
