@@ -2,31 +2,25 @@ import React from "react";
 import like from "../../assets/like.svg";
 import liked from "../../assets/liked.svg";
 import commentIcon from "../../assets/comment.svg";
-import userIcon from '../../assets/user-icon.jpg'
+import userIcon from "../../assets/user-icon.jpg";
 import "./CommentCard.scss";
 import formatDate from "../../utils/formatDate";
 import { deleteComment, addLikeToComment } from "../../API/comments";
 import toast from "react-hot-toast";
 import { useAuth } from "../../providers/authProvider";
+import { basePath } from "../../API/axiosInstance";
 
 export default function CommentCard({ comment, comments, setCommentsFetched }) {
-  const {
-    createdAt,
-    commentText,
-    likes,
-    userId
-  } = comment;
+  const { createdAt, commentText, likes, userId } = comment;
 
   const { userName, _id } = userId;
 
-  
   const { loggedUser } = useAuth();
-  let imgSrc = { userIcon }
+  let imgSrc = userIcon;
   const ownLike = loggedUser ? likes.find((i) => i.user === loggedUser.id) : [];
 
-
-  if (loggedUser) {
-    imgSrc = loggedUser
+  if (comment && comment.userId && comment.userId.userIcon) {
+    imgSrc = basePath + comment.userId.userIcon.slice(1);
   }
 
   // deletes comment
@@ -44,17 +38,16 @@ export default function CommentCard({ comment, comments, setCommentsFetched }) {
       toast.error("Could not delete comment!");
     }
   };
- 
 
   //adds like to comment
   const addLikeHandler = async () => {
     try {
-      const updateComment = comments.find(c=> c._id === comment._id);
+      const updateComment = comments.find((c) => c._id === comment._id);
       if (updateComment) {
-        updateComment.likes.push({ user: loggedUser.id })
+        updateComment.likes.push({ user: loggedUser.id });
       }
-       await addLikeToComment(comment._id);
-       setCommentsFetched([...comments]);
+      await addLikeToComment(comment._id);
+      setCommentsFetched([...comments]);
       toast.success("Like added!");
     } catch (error) {
       toast.error("Error occured!");
