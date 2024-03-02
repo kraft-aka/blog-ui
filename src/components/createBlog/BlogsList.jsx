@@ -25,7 +25,9 @@ export default function BlogsList({ handleEdit, setShowEdit }) {
 
   // Likes for user's blogs
   useEffect(() => {
-    getLikes().then(response => setBlogLikes(response.blogsLikes))
+    if(loggedUser) {
+      getLikes().then(response => setBlogLikes(response.blogsLikes))
+    }
   }, [])
 
 

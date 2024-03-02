@@ -24,6 +24,7 @@ export default function Blog() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+
   function addComment() {
     setShowComment(true);
     localStorage.setItem("Comment", true);
@@ -41,7 +42,7 @@ export default function Blog() {
   function addLikeHandler(id) {
     addLike(id)
       .then((response) => {
-        setLikes((prevLikes) => [response, ...prevLikes]);
+        setLikes((prevLikes) => [{ user: loggedUser.id }, ...prevLikes]);
         toast.success("Like added!");
       })
       .catch((error) => toast.error("Error occured!"));
@@ -93,7 +94,7 @@ export default function Blog() {
                 <p className="blog-like-comment">{commentsFetched.length}</p>
                 <img src={comment} alt="comment icon" className="blog-icon" />
                 <p className="blog-like-comment">|</p>
-                <p className="blog-like-comment">{singleBlog.likes.length}</p>
+                <p className="blog-like-comment">{likes.length}</p>
                 <img src={like} alt="thumb up" className="blog-icon" />
               </div>
             </header>
@@ -115,7 +116,7 @@ export default function Blog() {
                 {loggedUser && (
                   <div className="blog-sum-container-item-2">
                     <span className="blog-add-like">
-                      {singleBlog.likes.length}
+                      {likes.length}
                     </span>
                     {ownLike ? (
                       <img

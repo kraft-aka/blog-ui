@@ -1,5 +1,6 @@
 import React from "react";
 import like from "../../assets/like.svg";
+import liked from "../../assets/liked.svg";
 import commentIcon from "../../assets/comment.svg";
 import userIcon from '../../assets/user-icon.jpg'
 import "./CommentCard.scss";
@@ -13,11 +14,16 @@ export default function CommentCard({ comment, comments, setCommentsFetched }) {
     createdAt,
     commentText,
     likes,
-    userId: { userName },
-    userId: { _id },
+    userId
   } = comment;
+
+  const { userName, _id } = userId;
+
+  
   const { loggedUser } = useAuth();
   let imgSrc = { userIcon }
+  const ownLike = loggedUser ? likes.find((i) => i.user === loggedUser.id) : [];
+
 
   if (loggedUser) {
     imgSrc = loggedUser
@@ -38,12 +44,17 @@ export default function CommentCard({ comment, comments, setCommentsFetched }) {
       toast.error("Could not delete comment!");
     }
   };
+ 
 
   //adds like to comment
   const addLikeHandler = async () => {
     try {
-      await addLikeToComment(comment._id);
-      setCommentsFetched((prevComments) => [comment._id, ...prevComments]);
+      const updateComment = comments.find(c=> c._id === comment._id);
+      if (updateComment) {
+        updateComment.likes.push({ user: loggedUser.id })
+      }
+       await addLikeToComment(comment._id);
+       setCommentsFetched([...comments]);
       toast.success("Like added!");
     } catch (error) {
       toast.error("Error occured!");
@@ -67,7 +78,21 @@ export default function CommentCard({ comment, comments, setCommentsFetched }) {
       <div className="comment-card-cta">
         <div className="comment-card-cta-item-1">
           <p className="comment-card-like">{likes.length}</p>
-          <img src={like} alt="thumb up" onClick={addLikeHandler} />
+          {ownLike ? (
+            <img
+              src={liked}
+              alt="filled like icon"
+              className="blog-icon"
+              style={{ marginLeft: ".5rem" }}
+            />
+          ) : (
+            <img
+              src={like}
+              alt=""
+              className="blog-icon"
+              onClick={() => addLikeHandler(comment._id)}
+            />
+          )}
         </div>
         <img src={commentIcon} alt="comment cloud" />
         {loggedUser && (
