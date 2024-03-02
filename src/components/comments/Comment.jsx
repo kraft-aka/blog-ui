@@ -5,6 +5,8 @@ import { inputValueIsValid } from "../../utils/inputValueIsValid";
 import { addComment } from "../../API/comments";
 import { toast } from "react-hot-toast";
 import { useAuth } from "../../providers/authProvider";
+import userIcon from '../../assets/user-icon.jpg'
+import { basePath } from "../../API/axiosInstance";
 
 function Comment({ closeComment, blogId, comments, setCommentsFetched, addNewComment }) {
   const [inputValue, setInputValue] = useState("");
@@ -38,8 +40,12 @@ function Comment({ closeComment, blogId, comments, setCommentsFetched, addNewCom
     }
   }
 
-  let srcImg =
-    "https://images.unsplash.com/photo-1682685797741-f0213d24418c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D";
+  let srcImg = userIcon
+
+  if(loggedUser && loggedUser.userIcon) {
+    srcImg = basePath + loggedUser.userIcon.slice(1)
+  }
+    
 
   return (
     <aside className="comment-container">
