@@ -4,6 +4,7 @@ import userIcon from "../../assets/user-icon.jpg";
 import { useAuth } from "../../providers/authProvider";
 import { inputValueIsValid } from "../../utils/inputValueIsValid";
 import { inputEmailIsValid } from "../../utils/inputValueIsValid";
+import { basePath } from "../../API/axiosInstance";
 
 export default function UserCard() {
   const { loggedUser } = useAuth();
@@ -11,6 +12,7 @@ export default function UserCard() {
   const [newUserName, setNewUserName] = useState(userName);
   const [newEmail, setNewEmail] = useState(email);
   const [newPassword, setNewPassword] = useState("");
+  console.log(loggedUser);
 
   const validUserName = inputValueIsValid(newUserName);
   const validEmail = inputEmailIsValid(newEmail);
@@ -28,7 +30,13 @@ export default function UserCard() {
     e.preventDefault();
   }
 
+  // user icon bydefault
   let imgSrc = userIcon;
+
+  // get path to the user icon
+  if (loggedUser && loggedUser.userIcon) {
+    imgSrc = basePath + loggedUser.userIcon.slice(1);
+  }
 
   return (
     <main className="user-card-container">
