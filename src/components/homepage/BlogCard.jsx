@@ -3,29 +3,32 @@ import "./BlogCard.scss";
 import { Link } from "react-router-dom";
 import { basePath } from "../../API/axiosInstance";
 import formatDate from "../../utils/formatDate";
+import userIconDefault from '../../assets/user-icon.jpg'
 
 export default function BlogCard({ blog }) {
   const {
     title,
     _id,
-    userName,
     createdAt,
     blogContent,
     blogImage,
-    createdBy: { userIcon },
+    createdBy,
   } = blog;
+
+  const { userIcon, userName, } = createdBy;
 
   let imgSrc =
     "https://images.unsplash.com/photo-1705848533403-6a5427e6f466?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHx8";
-  let iconSrc =
-    "https://images.unsplash.com/photo-1705848533403-6a5427e6f466?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHx8";
+  let iconSrc = userIconDefault
+
 
   if (blogImage) {
     imgSrc = `${basePath}${blogImage.slice(1)}`;
   }
 
-  if (userIcon) {
-    iconSrc = `${basePath}${userIcon.slice(1)}`;
+  if (createdBy && userIcon) {
+     iconSrc = `${basePath}${userIcon.slice(1)}`;
+
   }
 
   // cretes description
