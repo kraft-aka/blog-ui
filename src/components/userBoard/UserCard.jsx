@@ -51,18 +51,6 @@ export default function UserCard() {
         </p>
       </section>
       <form className="user-card-update-form" onSubmit={handleSubmitUserChange}>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          value={newUserName}
-          onChange={(e) => setNewUserName(e.target.value)}
-        />
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          value={newEmail}
-          onChange={(e) => setNewEmail(e.target.value)}
-        />
         <label htmlFor="password">Password</label>
         <input
           type="password"
