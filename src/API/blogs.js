@@ -86,6 +86,15 @@ async function addLike(blogId) {
   }
 }
 
+async function deleteLike(blogId) {
+  try {
+    const res = await axiosInstance.delete(`blogs/deletelike/${blogId}`);
+    return res.data.msg;
+  } catch (err) {
+    return false;
+  }
+}
+
 async function getLikes() {
   try {
     const res = await axiosInstance.get('likes');
@@ -105,5 +114,6 @@ export {
   getPaginatedBlogs,
   addImage,
   addLike,
+  deleteLike,
   getLikes,
 };
