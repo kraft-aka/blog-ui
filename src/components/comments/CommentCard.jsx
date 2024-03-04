@@ -23,6 +23,9 @@ export default function CommentCard({ comment, comments, setCommentsFetched }) {
     imgSrc = basePath + comment.userId.userIcon.slice(1);
   }
 
+  // to render a delete btn
+  const showDeleteBtn = _id === loggedUser.id;
+
   // deletes comment
   const deleteCommentHandler = async (e) => {
     e.preventDefault();
@@ -53,8 +56,6 @@ export default function CommentCard({ comment, comments, setCommentsFetched }) {
       toast.error("Error occured!");
     }
   };
-  //TODO:
-  // refactor addLikeHandler -> throws error
 
   return (
     <section className="comment-card-container">
@@ -88,7 +89,7 @@ export default function CommentCard({ comment, comments, setCommentsFetched }) {
           )}
         </div>
         <img src={commentIcon} alt="comment cloud" />
-        {loggedUser && (
+        {loggedUser && showDeleteBtn && (
           <button className="comment-card-btn" onClick={deleteCommentHandler}>
             Delete
           </button>
