@@ -13,6 +13,7 @@ import like from "../assets/like.svg";
 import liked from "../assets/liked.svg";
 import userIcon from "../assets/user-icon.jpg";
 import toast from "react-hot-toast";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
 
 export default function Blog() {
   const [singleBlog, setSingleBlog] = useState(null);
@@ -114,7 +115,7 @@ export default function Blog() {
             </header>
             <figure className="blog-figure">
               <img src={srcImg} alt="main image" className="blog-img" />
-              <figcaption>Photograph: {}</figcaption>
+              <figcaption>Photograph: { }</figcaption>
             </figure>
           </section>
           <section className="blog-content">
@@ -172,7 +173,7 @@ export default function Blog() {
           )}
         </main>
       ) : (
-        <h1>Loading...</h1>
+        <LoadingSpinner isLoading={isLoading.toString()} />
       )}{" "}
     </>
   );

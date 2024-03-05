@@ -5,6 +5,7 @@ import { useAuth } from "../providers/authProvider";
 import { useNavigate } from "react-router-dom";
 import "./Login.scss";
 import { toast } from "react-hot-toast";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
 
 export default function Login() {
   const { SetToken, SetLoggedUser } = useAuth();
@@ -102,7 +103,7 @@ export default function Login() {
           </form>
         </div>
       ) : (
-        "Loading..."
+        <LoadingSpinner isLoading={isLoading.toString()} />
       )}
     </>
   );
