@@ -23,6 +23,15 @@ $textWhiteColor: #fff;
     margin: 1rem 0;
   }
 
+  .user-card-icon-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: .5rem;
+    width: inherit;
+  }
+
   img {
     width: 10rem;
     height: 10rem;
@@ -49,7 +58,7 @@ $textWhiteColor: #fff;
   label {
     margin: .5rem 0;
   }
-  input {
+  input[type=password]{
     padding: .4rem;
     width: 100%;
     outline: none;

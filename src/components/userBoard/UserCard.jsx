@@ -23,6 +23,7 @@ export default function UserCard() {
 
   const handleAvatarChange = (e) => {
     setAvatar(e.target.files[0]);
+    console.log(e.target.files[0])
   };
 
   // updated user fields to submit
@@ -47,16 +48,16 @@ export default function UserCard() {
 
   const submitUserIcon = async (e) => {
     e.preventDefault();
-    if (loggedUser) {
+    if (loggedUser.id) {
       const formData = new FormData();
       formData.append('uploadFile', avatar)
-      const img = await addUserIcon(formData)
+      await addUserIcon(formData)
       console.log('User avatar is uploaded')
       SetLoggedUser((loggedUser) => ({
         ...loggedUser,
-        userIcon: img,
+        userIcon: avatar,
       }))
-      setAvatar(img)
+      setAvatar(avatar)
     } else {
       console.log('Error occured')
     }
@@ -66,7 +67,7 @@ export default function UserCard() {
   return (
     <main className="user-card-container">
       <h3>Your Profile</h3>
-      <img src={avatar} alt="user's photo" />
+      <img src={avatar ? avatar : imgSrc } alt="user's photo" />
       <form className="user-card-icon-form" onSubmit={submitUserIcon}>
         <label htmlFor="avatar">User icon</label>
         <input
