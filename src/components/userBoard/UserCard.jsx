@@ -10,27 +10,12 @@ import { addUserIcon } from "../../API/users";
 export default function UserCard() {
   const { loggedUser, SetLoggedUser } = useAuth();
   const { userName, email } = loggedUser;
-  const [avatar, setAvatar] = useState('');
-  const [newUserName, setNewUserName] = useState(userName);
-  const [newEmail, setNewEmail] = useState(email);
+  const [avatar, setAvatar] = useState("");
   const [newPassword, setNewPassword] = useState("");
-
-
-  const validUserName = inputValueIsValid(newUserName);
-  const validEmail = inputEmailIsValid(newEmail);
-  const validPassword = inputValueIsValid(newPassword);
-
 
   const handleAvatarChange = (e) => {
     setAvatar(e.target.files[0]);
-    console.log(e.target.files[0])
-  };
-
-  // updated user fields to submit
-  const updatedUser = {
-    userName: validUserName,
-    email: validEmail,
-    password: validPassword,
+    console.log(e.target.files[0]);
   };
 
   // submit handler
@@ -50,31 +35,31 @@ export default function UserCard() {
     e.preventDefault();
     if (loggedUser.id) {
       const formData = new FormData();
-      formData.append('uploadFile', avatar)
-      await addUserIcon(formData)
-      console.log('User avatar is uploaded')
+      formData.append("uploadFile", avatar);
+      await addUserIcon(formData);
+      console.log("User avatar is uploaded");
       SetLoggedUser((loggedUser) => ({
         ...loggedUser,
         userIcon: avatar,
-      }))
-      setAvatar(avatar)
+      }));
+      setAvatar(avatar);
     } else {
-      console.log('Error occured')
+      console.log("Error occured");
     }
-  }
-  console.log(loggedUser)
+  };
+  console.log(loggedUser);
 
   return (
     <main className="user-card-container">
       <h3>Your Profile</h3>
-      <img src={avatar ? avatar : imgSrc } alt="user's photo" />
+      <img src={avatar ? avatar : imgSrc} alt="user's photo" />
       <form className="user-card-icon-form" onSubmit={submitUserIcon}>
         <label htmlFor="avatar">User icon</label>
         <input
           type="file"
           id="avatar"
           className="user-icon-load"
-          name='avatar'
+          name="avatar"
           onChange={handleAvatarChange}
         />
         <br />
