@@ -12,7 +12,7 @@ async function getUser() {
 async function addUserIcon(userImg) {
   try {
     const res = await axiosInstance.post('user/addIcon', userImg);
-    return res.data.msg
+    return res.data
   } catch (err) {
     return false;
   }

@@ -13,18 +13,17 @@ export default function UserCard() {
   const [avatar, setAvatar] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
+  // user icon by default
+  let imgSrc = userIcon;
+
   const handleAvatarChange = (e) => {
     setAvatar(e.target.files[0]);
-    console.log(e.target.files[0]);
   };
 
   // submit handler
   function handleSubmitUserChange(e) {
     e.preventDefault();
   }
-
-  // user icon bydefault
-  let imgSrc = userIcon;
 
   // get path to the user icon
   if (loggedUser && loggedUser.userIcon) {
@@ -33,26 +32,31 @@ export default function UserCard() {
 
   const submitUserIcon = async (e) => {
     e.preventDefault();
-    if (loggedUser.id) {
+    if (loggedUser) {
       const formData = new FormData();
       formData.append("uploadFile", avatar);
-      await addUserIcon(formData);
-      console.log("User avatar is uploaded");
-      SetLoggedUser((loggedUser) => ({
+      const { userIcon } = await addUserIcon(formData);
+      console.log("User avatar is uploaded", userIcon);
+      let url = basePath + userIcon.slice(1);
+      // read it again
+      await fetch(url, { cache: "reload", mode: "no-cors" });
+      document.body
+        .querySelectorAll(`img[src='${url}']`)
+        .forEach((img) => (img.src = url));
+        //
+      SetLoggedUser({
         ...loggedUser,
-        userIcon: avatar,
-      }));
-      setAvatar(avatar);
+        userIcon: userIcon,
+      });
     } else {
       console.log("Error occured");
     }
   };
-  console.log(loggedUser);
 
   return (
     <main className="user-card-container">
       <h3>Your Profile</h3>
-      <img src={avatar ? avatar : imgSrc} alt="user's photo" />
+      <img src={imgSrc} alt="user's photo" />
       <form className="user-card-icon-form" onSubmit={submitUserIcon}>
         <label htmlFor="avatar">User icon</label>
         <input
