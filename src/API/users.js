@@ -9,6 +9,15 @@ async function getUser() {
   }
 }
 
+async function signUpUser(user) {
+  try {
+    const res = await axiosInstance.post('signUp', user);
+    return res.data.newUser;
+  } catch (err) {
+    return false
+  }
+}
+
 async function addUserIcon(userImg) {
   try {
     const res = await axiosInstance.post('user/addIcon', userImg);
@@ -19,4 +28,4 @@ async function addUserIcon(userImg) {
 }
 
 
-export { getUser, addUserIcon };
+export { getUser, signUpUser ,addUserIcon };

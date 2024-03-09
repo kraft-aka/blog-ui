@@ -10,7 +10,6 @@ const AuthProvider = ({ children }) => {
   );
   const SetToken = (newToken) => setToken(newToken);
   const SetLoggedUser = (newUser) => {
-    console.log(newUser)
     setLoggedUser(newUser)};
 
   const Logout = () => {
