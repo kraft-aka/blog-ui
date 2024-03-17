@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import "./UserCard.scss";
 import userIcon from "../../assets/user-icon.jpg";
 import { useAuth } from "../../providers/authProvider";
-import { inputValueIsValid } from "../../utils/inputValueIsValid";
-import { inputEmailIsValid } from "../../utils/inputValueIsValid";
 import { basePath } from "../../API/axiosInstance";
 import { addUserIcon } from "../../API/users";
+import UserPassword from "./UserPassword";
 
 export default function UserCard() {
   const { loggedUser, SetLoggedUser } = useAuth();
@@ -36,7 +35,6 @@ export default function UserCard() {
       const formData = new FormData();
       formData.append("uploadFile", avatar);
       const { userIcon } = await addUserIcon(formData);
-      console.log("User avatar is uploaded", userIcon);
       let url = basePath + userIcon.slice(1);
       // read it again
       await fetch(url, { cache: "reload", mode: "no-cors" });
@@ -77,7 +75,7 @@ export default function UserCard() {
           Email: <span>{email}</span>
         </p>
       </section>
-      <form className="user-card-update-form" onSubmit={handleSubmitUserChange}>
+      {/*<form className="user-card-update-form" onSubmit={handleSubmitUserChange}>
         <label htmlFor="password">Password</label>
         <input
           type="password"
@@ -88,7 +86,8 @@ export default function UserCard() {
         <button className="user-card-update-btn" type="submit">
           Save
         </button>
-      </form>
+  </form>*/}
+      <UserPassword />
     </main>
   );
 }

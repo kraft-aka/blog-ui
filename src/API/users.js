@@ -27,5 +27,14 @@ async function addUserIcon(userImg) {
   }
 }
 
+async function editUserPassword(user) {
+  try {
+    const res = await axiosInstance.patch('user', user)
+    return res.data.user;
+  } catch (err) {
+    return false;
+  }
+}
 
-export { getUser, signUpUser ,addUserIcon };
+
+export { getUser, signUpUser, editUserPassword, addUserIcon };
