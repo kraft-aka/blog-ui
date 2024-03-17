@@ -17,6 +17,16 @@ $btnBgColor: #4a7e73;
   align-items: center;
 }
 
+.navbar-display-username {
+  display: inline-block;
+  font-weight: 700;
+  color: $textColor;
+  position: relative;
+  bottom: 3.5rem;
+  right: 0rem;
+
+}
+
 .navbar-user {
   margin-right: 1rem;
   width: 1rem;
