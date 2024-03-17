@@ -4,20 +4,24 @@ import "./BlogRoll.scss";
 import { getAllBlogs } from "../../API/blogs";
 import { useBlog } from "../../providers/blogProvider";
 import Pagination from "../pagination/Pagination";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 export default function BlogRoll() {
   const [blogs, setBlogs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentBlogsLimit, setCurrentBlogsLimit] = useState(3);
   const [pagesCount, setPagesCount] = useState(10);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { SetBlogs } = useBlog();
 
   // all blogs from DB
   useEffect(() => {
     getAllBlogs(currentPage, currentBlogsLimit).then((loadedBlogs) => {
+      setIsLoading(true);
       setBlogs(loadedBlogs);
       SetBlogs(loadedBlogs);
+      setIsLoading(false);
     });
   }, [currentPage, currentBlogsLimit]);
 
@@ -41,8 +45,8 @@ export default function BlogRoll() {
           </section>
         </div>
       ) : (
-        <h1>Loading...</h1>
-      )}{" "}
+        <LoadingSpinner isLoading={isLoading.toString()} />
+      )}
     </>
   );
 }

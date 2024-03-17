@@ -102,7 +102,7 @@ export default function SignUp() {
           </form>
         </div>
       ) : (
-        <LoadingSpinner />
+        <LoadingSpinner isLoading={isLoading.toString()}/>
       )}
     </>
   );
