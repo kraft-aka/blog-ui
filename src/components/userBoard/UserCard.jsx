@@ -10,7 +10,6 @@ export default function UserCard() {
   const { loggedUser, SetLoggedUser } = useAuth();
   const { userName, email } = loggedUser;
   const [avatar, setAvatar] = useState("");
-  const [newPassword, setNewPassword] = useState("");
 
   // user icon by default
   let imgSrc = userIcon;
@@ -75,18 +74,6 @@ export default function UserCard() {
           Email: <span>{email}</span>
         </p>
       </section>
-      {/*<form className="user-card-update-form" onSubmit={handleSubmitUserChange}>
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          placeholder="********"
-          value={newPassword}
-          onChange={(e) => setNewPassword(e.target.value)}
-        />
-        <button className="user-card-update-btn" type="submit">
-          Save
-        </button>
-  </form>*/}
       <UserPassword />
     </main>
   );
