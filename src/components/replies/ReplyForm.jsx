@@ -8,11 +8,12 @@ export default function ReplyForm() {
         <label htmlFor="reply">Reply</label>
         <input
           type="text"
-          onChange={(e) => setInputReply(e.target.value)}
+          onChange={(e) => setReplyInput(e.target.value)}
           value={replyInput}
           name="reply"
           id="reply"
         />
+        <button type="submit">Reply</button>
       </form>
     </div>
   );
