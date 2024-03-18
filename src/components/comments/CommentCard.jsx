@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import like from "../../assets/like.svg";
 import liked from "../../assets/liked.svg";
 import commentIcon from "../../assets/comment.svg";
@@ -9,9 +9,11 @@ import { deleteComment, addLikeToComment } from "../../API/comments";
 import toast from "react-hot-toast";
 import { useAuth } from "../../providers/authProvider";
 import { basePath } from "../../API/axiosInstance";
+import ReplyForm from "../replies/ReplyForm";
 
 export default function CommentCard({ comment, comments, setCommentsFetched }) {
   const { createdAt, commentText, likes, userId } = comment;
+  const [showReply, setShowReply] = useState(false);
 
   const { userName, _id } = userId;
 
@@ -57,6 +59,11 @@ export default function CommentCard({ comment, comments, setCommentsFetched }) {
     }
   };
 
+  // show reply form input
+  function handleReply() {
+    setShowReply((prevReply) => !prevReply);
+  }
+
   return (
     <section className="comment-card-container">
       <header className="comment-card-header">
@@ -88,13 +95,14 @@ export default function CommentCard({ comment, comments, setCommentsFetched }) {
             />
           )}
         </div>
-        <img src={commentIcon} alt="comment cloud" />
+        <img src={commentIcon} alt="comment cloud" onClick={handleReply} />
         {loggedUser && showDeleteBtn && (
           <button className="comment-card-btn" onClick={deleteCommentHandler}>
             Delete
           </button>
         )}
       </div>
+      {showReply && <ReplyForm />}
     </section>
   );
 }
