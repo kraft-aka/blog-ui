@@ -1,10 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { addReply } from "../../API/comments";
+import toast from 'react-hot-toast'
+import { inputValueIsValid } from '../../utils/inputValueIsValid'
 
-export default function ReplyForm() {
+export default function ReplyForm({comment}) {
   const [replyInput, setReplyInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [errMsg, setErrorMsg] = useState(false);
+
+  async function handleReplySubmit(e) {
+    e.preventDefault();
+    if (!inputValueIsValid(replyInput)) {
+      errMsg(true);
+      return;
+    }
+    try {
+      const id = comment._id;
+      //comment.replies.push({  })
+      const newReply = await addReply(id, replyInput)
+      console.log(newReply)
+
+    } catch(error) {
+      toast.error('Error occured!')
+    }
+    
+  }
+
   return (
     <div>
-      <form>
+      <form onSubmit={handleReplySubmit}>
         <label htmlFor="reply">Reply</label>
         <input
           type="text"

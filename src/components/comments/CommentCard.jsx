@@ -10,12 +10,14 @@ import toast from "react-hot-toast";
 import { useAuth } from "../../providers/authProvider";
 import { basePath } from "../../API/axiosInstance";
 import ReplyForm from "../replies/ReplyForm";
+import ReplyList from "../replies/ReplyCard";
 
 export default function CommentCard({ comment, comments, setCommentsFetched }) {
   const { createdAt, commentText, likes, userId } = comment;
   const [showReply, setShowReply] = useState(false);
 
   const { userName, _id } = userId;
+  const showReplies = comment.replies
 
   const { loggedUser } = useAuth();
   let imgSrc = userIcon;
@@ -44,6 +46,7 @@ export default function CommentCard({ comment, comments, setCommentsFetched }) {
     }
   };
 
+  console.log(comment)
   //adds like to comment
   const addLikeHandler = async () => {
     try {
@@ -102,6 +105,7 @@ export default function CommentCard({ comment, comments, setCommentsFetched }) {
           </button>
         )}
       </div>
+      { showReplies.length > 0 && <ReplyList comment={comment}/>}
       {showReply && <ReplyForm />}
     </section>
   );

@@ -4,7 +4,7 @@ import userIcon from "../../assets/user-icon.jpg";
 import { useAuth } from '../../providers/authProvider';
 //import formatDate from '../../utils/formatDate';
 
-export default function ReplyCard() {
+export default function ReplyCard({commentId}) {
   const { loggedUser } = useAuth();
 
   let imgSrc = userIcon;
@@ -19,7 +19,6 @@ export default function ReplyCard() {
         <img src={imgSrc} alt="user icon" className="reply-card-user-icon" />
         <div className="reply-card-username-date-cont">
           <p className="reply-card-username">{loggedUser.userName}</p>
-          <p className="reply-card-date">{new Date().getFullYear}</p>
         </div>
       </header>
       <div className="reply-card-content-container">
