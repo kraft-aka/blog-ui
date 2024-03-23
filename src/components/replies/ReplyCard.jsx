@@ -4,14 +4,10 @@ import userIcon from "../../assets/user-icon.jpg";
 import { useAuth } from '../../providers/authProvider';
 //import formatDate from '../../utils/formatDate';
 
-export default function ReplyCard({commentId}) {
+export default function ReplyCard({reply}) {
   const { loggedUser } = useAuth();
 
   let imgSrc = userIcon;
-
-  // if (comment && comment.userId && comment.userId.userIcon) {
-  //   imgSrc = basePath + comment.userId.userIcon.slice(1);
-  // }
 
   return (
     <section className="reply-card-container">
@@ -22,7 +18,7 @@ export default function ReplyCard({commentId}) {
         </div>
       </header>
       <div className="reply-card-content-container">
-        <p className="reply-card-text">{ }some reply</p>
+        <p className="reply-card-text">{reply.commentText }</p>
       </div>
     </section>
   )

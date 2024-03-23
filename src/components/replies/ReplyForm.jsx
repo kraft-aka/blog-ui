@@ -3,7 +3,7 @@ import { addReply } from "../../API/comments";
 import toast from 'react-hot-toast'
 import { inputValueIsValid } from '../../utils/inputValueIsValid'
 
-export default function ReplyForm({comment}) {
+export default function ReplyForm({ comment, setCommentsFetched, comments }) {
   const [replyInput, setReplyInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errMsg, setErrorMsg] = useState(false);
@@ -18,12 +18,15 @@ export default function ReplyForm({comment}) {
       const id = comment._id;
       //comment.replies.push({  })
       const newReply = await addReply(id, replyInput)
-      console.log(newReply)
+      //comments.find(c=> c)
+      
 
-    } catch(error) {
+
+
+    } catch (error) {
       toast.error('Error occured!')
     }
-    
+
   }
 
   return (

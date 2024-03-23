@@ -1,12 +1,12 @@
 import React from "react";
 import ReplyCard from "./ReplyCard";
 
-export default function ReplyList({ comment }) {
+export default function ReplyList({ replies }) {
   return (
     <ul>
-      {comment.replies.length > 0
-        ? comment.replies.map((reply) => (
-            <ReplyCard key={reply.commentId} reply={reply.commentId} />
+      {replies.length > 0
+        ? replies.map((reply) => (
+            <ReplyCard key={reply.commentId} reply={reply} />
           ))
         : ""}
     </ul>
